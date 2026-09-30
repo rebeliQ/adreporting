@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rebel iQ — Ad Reports</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #E8EEF8; --surface: #fff; --border: #D2DCF0; --t1: #0B1538; --t2: #3D5080; --t3: #7D90B8; --accent: #09175C; --accent-l: #294F9D; }
+@media (prefers-color-scheme: dark) { :root { --bg: #080F24; --surface: #0F1A36; --border: #1E2D55; --t1: #D4DFFA; --t2: #7B93CC; --t3: #3A5082; --accent: #5B78D8; --accent-l: #7B9BDF; color-scheme: dark; } }
+body { font-family: 'Outfit', system-ui, sans-serif; background: var(--bg); color: var(--t1); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+.wrap { max-width: 480px; width: 100%; text-align: center; }
+.eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-l); margin-bottom: 10px; }
+h1 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; }
+.sub { font-size: 14px; color: var(--t2); margin-bottom: 36px; }
+.reports { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.report-link { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; text-decoration: none; color: inherit; transition: border-color .15s; }
+.report-link:hover { border-color: var(--accent-l); }
+.report-client { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--t3); margin-bottom: 4px; }
+.report-title { font-size: 15px; font-weight: 700; color: var(--t1); }
+.report-meta { font-size: 11.5px; color: var(--t3); margin-top: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">rebel iQ</div>
+  <h1>Ad Reporting</h1>
+  <p class="sub">Client campaign dashboards</p>
+  <div class="reports">
+    <a class="report-link" href="gershman-nebraska/">
+      <div class="report-client">Gershman Mortgage</div>
+      <div class="report-title">Nebraska — Google Ads</div>
+      <div class="report-meta">Aug 1 – Sep 29, 2026</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

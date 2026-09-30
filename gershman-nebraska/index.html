@@ -1,0 +1,829 @@
+<title>Gershman Nebraska — Ads</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ─── Tokens ───────────────────────────────────────────────────── */
+:root {
+  --bg:       #E8EEF8;
+  --surface:  #FFFFFF;
+  --s2:       #F2F5FB;
+  --border:   #D2DCF0;
+  --t1:       #0B1538;
+  --t2:       #3D5080;
+  --t3:       #7D90B8;
+  --accent:   #09175C;
+  --accent-l: #294F9D;
+  --pos:      #0B7A50;
+  --neg:      #C0281E;
+  --warn:     #A05A0A;
+  --pos-bg:   #E2F3EC;
+  --neg-bg:   #FCEAE8;
+  --warn-bg:  #FDF3E1;
+  --shadow:   0 1px 3px rgba(9,23,92,.08), 0 6px 16px rgba(9,23,92,.07);
+  --r:        10px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #080F24;
+    --surface:  #0F1A36;
+    --s2:       #152040;
+    --border:   #1E2D55;
+    --t1:       #D4DFFA;
+    --t2:       #7B93CC;
+    --t3:       #3A5082;
+    --accent:   #5B78D8;
+    --accent-l: #7B9BDF;
+    --pos:      #22C07A;
+    --neg:      #F0594F;
+    --warn:     #F0A84A;
+    --pos-bg:   #082B1C;
+    --neg-bg:   #2C0C0A;
+    --warn-bg:  #2C1A00;
+    --shadow:   0 1px 3px rgba(0,0,0,.4), 0 6px 16px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:       #080F24;
+  --surface:  #0F1A36;
+  --s2:       #152040;
+  --border:   #1E2D55;
+  --t1:       #D4DFFA;
+  --t2:       #7B93CC;
+  --t3:       #3A5082;
+  --accent:   #5B78D8;
+  --accent-l: #7B9BDF;
+  --pos:      #22C07A;
+  --neg:      #F0594F;
+  --warn:     #F0A84A;
+  --pos-bg:   #082B1C;
+  --neg-bg:   #2C0C0A;
+  --warn-bg:  #2C1A00;
+  --shadow:   0 1px 3px rgba(0,0,0,.4), 0 6px 16px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 28px 22px 52px;
+}
+
+.dash { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+/* ─── Header ───────────────────────────────────────────────────── */
+.header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-l); margin-bottom: 4px; }
+.dash-title { font-size: 26px; font-weight: 800; letter-spacing: -.015em; color: var(--t1); line-height: 1; }
+.dash-title em { color: var(--accent-l); font-style: normal; }
+.header-right { text-align: right; }
+.header-date { font-size: 13px; font-weight: 600; color: var(--t2); }
+.header-sub  { font-size: 11px; color: var(--t3); margin-top: 2px; }
+.story-pills { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 20px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .02em;
+}
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.pill-pos { background: var(--pos-bg); color: var(--pos); }
+.pill-neg { background: var(--neg-bg); color: var(--neg); }
+.pill-warn { background: var(--warn-bg); color: var(--warn); }
+
+/* ─── Quick view ───────────────────────────────────────────────── */
+.quickview {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-l);
+  border-radius: var(--r);
+  padding: 14px 18px;
+}
+.quickview-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--t3); margin-bottom: 8px; }
+.quickview ul { padding-left: 16px; display: flex; flex-direction: column; gap: 5px; }
+.quickview li { font-size: 13px; color: var(--t2); line-height: 1.5; }
+.quickview li b { color: var(--t1); }
+
+/* ─── KPI Row ──────────────────────────────────────────────────── */
+.kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+@media (max-width: 860px) { .kpi-row { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+.kpi-row-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 860px) { .kpi-row-4 { grid-template-columns: repeat(2, 1fr); } }
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px 14px;
+  box-shadow: var(--shadow);
+}
+.kpi-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--t3); margin-bottom: 8px; }
+.kpi-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px; font-weight: 500; color: var(--t1); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-val.pos  { color: var(--pos); }
+.kpi-val.neg  { color: var(--neg); }
+.kpi-val.warn { color: var(--warn); }
+.kpi-val.blue { color: var(--accent-l); }
+.kpi-delta { display: flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 11.5px; color: var(--t2); }
+.badge {
+  display: inline-block; padding: 1px 6px; border-radius: 4px;
+  font-size: 10.5px; font-weight: 700;
+}
+.badge-pos  { background: var(--pos-bg); color: var(--pos); }
+.badge-neg  { background: var(--neg-bg); color: var(--neg); }
+.badge-warn { background: var(--warn-bg); color: var(--warn); }
+.badge-flat { background: var(--s2); color: var(--t2); }
+
+/* ─── Card ─────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+.card-title { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.card-sub   { font-size: 11px; color: var(--t3); margin-bottom: 12px; }
+
+/* ─── Grid ─────────────────────────────────────────────────────── */
+.grid-2     { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3     { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media (max-width: 820px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+/* ─── Section ──────────────────────────────────────────────────── */
+.section-hd { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.section-hd h2 { font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.tag {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--accent-l); background: rgba(41,79,157,.1); padding: 2px 8px; border-radius: 4px;
+}
+:root[data-theme="dark"] .tag,
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tag { background: rgba(91,120,216,.15); } }
+
+/* ─── SVG shared ───────────────────────────────────────────────── */
+.chart-holder svg { display: block; width: 100%; overflow: visible; }
+svg text { font-family: 'JetBrains Mono', monospace; }
+.chart-holder { position: relative; }
+
+/* ─── Tooltip ──────────────────────────────────────────────────── */
+.tooltip {
+  position: absolute; pointer-events: none;
+  background: var(--t1); color: var(--bg);
+  font-size: 11px; font-family: 'JetBrains Mono', monospace;
+  padding: 6px 10px; border-radius: 6px;
+  transform: translate(-50%, calc(-100% - 10px));
+  white-space: nowrap; opacity: 0; transition: opacity .08s; z-index: 10;
+}
+.tooltip.show { opacity: 1; }
+
+/* ─── Tables ───────────────────────────────────────────────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tbl th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--t3); padding: 0 8px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.tbl th.r { text-align: right; }
+.tbl td { padding: 8px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl td.r { text-align: right; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.tbl td.best-cpl { text-align: right; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: var(--pos); font-weight: 600; }
+.tbl td.bad-cpl  { text-align: right; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: var(--neg); }
+.mini-bar-cell { width: 50px; }
+.mini-track { height: 4px; background: var(--border); border-radius: 2px; }
+.mini-fill  { height: 4px; border-radius: 2px; }
+
+/* ─── Route table ──────────────────────────────────────────────── */
+.city-nm  { font-weight: 700; color: var(--t1); }
+.zip-nm   { font-size: 10.5px; color: var(--t3); margin-top: 1px; }
+
+/* ─── Findings ─────────────────────────────────────────────────── */
+.findings { display: flex; flex-direction: column; gap: 8px; }
+.finding { border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; }
+.finding.crit { background: var(--neg-bg); }
+.finding.warn { background: var(--warn-bg); }
+.finding.good { background: var(--pos-bg); }
+.finding.info { background: var(--s2); }
+.finding-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.finding-title { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+.finding.crit .finding-title { color: var(--neg); }
+.finding.warn .finding-title { color: var(--warn); }
+.finding.good .finding-title { color: var(--pos); }
+.finding.info .finding-title { color: var(--t1); }
+.finding-body { font-size: 11.5px; color: var(--t2); line-height: 1.55; }
+
+/* ─── Actions ──────────────────────────────────────────────────── */
+.actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 760px) { .actions-grid { grid-template-columns: 1fr; } }
+.action-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 15px 17px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 7px;
+}
+.action-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.action-owner-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; }
+.owner-rib  { background: rgba(41,79,157,.1); color: var(--accent-l); }
+.owner-gshm { background: var(--s2); color: var(--t2); }
+.priority { font-size: 10px; font-weight: 700; }
+.priority.high { color: var(--neg); }
+.priority.med  { color: var(--warn); }
+.action-title { font-size: 12.5px; font-weight: 700; color: var(--t1); }
+.action-desc  { font-size: 11.5px; color: var(--t2); line-height: 1.5; }
+
+/* ─── Footer ───────────────────────────────────────────────────── */
+.footer { margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--t3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+</style>
+
+<div class="dash">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div>
+      <div class="eyebrow">Gershman Mortgage · Paid Search</div>
+      <div class="dash-title">Nebraska <em>Ads</em></div>
+    </div>
+    <div class="header-right">
+      <div class="header-date">Aug 1 – Sep 29, 2026</div>
+      <div class="header-sub">Account 135-648-2091 · MCC 6612664762 · rebel iQ</div>
+      <div class="story-pills">
+        <span class="pill pill-pos"><span class="pill-dot" style="background:var(--pos)"></span>$45 CPL · 70% credit-qualified</span>
+        <span class="pill pill-warn"><span class="pill-dot" style="background:var(--warn)"></span>14 urgent-timeline leads</span>
+        <span class="pill pill-neg"><span class="pill-dot" style="background:var(--neg)"></span>4 PM = 19% of leads</span>
+        <span class="pill pill-warn"><span class="pill-dot" style="background:var(--warn)"></span>fhaloans leads on IS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Quick View ── -->
+  <div class="quickview">
+    <div class="quickview-label">My Read Going Into This Review</div>
+    <ul>
+      <li>The campaign is working. <b>$45.03 CPL, 42 conversions tracked by Google — matching rebel iQ's 43 leads almost exactly.</b> CTR of 8.38% is above mortgage benchmarks.</li>
+      <li>Lead quality is strong — <b>70% qualify on credit (≥620), 98% score HIGH or VERY_HIGH on contactability.</b> The FTHB ad group drives 58% of leads and naturally skews toward longer timelines, expected for that keyword set.</li>
+      <li><b>14 leads have urgent purchase timelines</b> (ASAP, within 30 days, or signed agreement) — the highest-priority segment for follow-up.</li>
+      <li><b>One Google Ads enhancement to consider:</b> closing the loop between Total Expert lead status and campaign optimization via advanced conversions — more on this in Recommended Actions.</li>
+    </ul>
+  </div>
+
+  <!-- ── Campaign KPIs ── -->
+  <div>
+    <div class="section-hd"><h2>Campaign Performance</h2><span class="tag">Aug 1 – Sep 29</span></div>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Clicks</div>
+        <div class="kpi-val blue">220</div>
+        <div class="kpi-delta"><span class="badge badge-flat">Aug 113</span> Sep 107</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Impressions</div>
+        <div class="kpi-val">2,626</div>
+        <div class="kpi-delta"><span class="badge badge-flat">CTR 8.38%</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total Spend</div>
+        <div class="kpi-val">$1,891</div>
+        <div class="kpi-delta"><span class="badge badge-warn">Budget limited</span> $33/day</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Avg. CPC</div>
+        <div class="kpi-val">$8.60</div>
+        <div class="kpi-delta">FTHB $9.40 · Lenders $7.49</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Cost Per Lead</div>
+        <div class="kpi-val pos">$45</div>
+        <div class="kpi-delta"><span class="badge badge-pos">42 conv.</span> Google-tracked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Pipeline KPIs ── -->
+  <div>
+    <div class="section-hd"><h2>Lead Pipeline</h2><span class="tag">rebel iQ Funnel</span></div>
+    <div class="kpi-row kpi-row-4">
+      <div class="kpi">
+        <div class="kpi-label">Total Leads</div>
+        <div class="kpi-val">43</div>
+        <div class="kpi-delta">Aug 20 · Sep 23</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Credit-Qual. ≥620</div>
+        <div class="kpi-val pos">30</div>
+        <div class="kpi-delta"><span class="badge badge-pos">70%</span> of leads</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Contactability Score</div>
+        <div class="kpi-val pos">98%</div>
+        <div class="kpi-delta"><span class="badge badge-pos">HIGH / VERY_HIGH</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Urgent Timeline</div>
+        <div class="kpi-val warn">14</div>
+        <div class="kpi-delta">ASAP · 30-day · signed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Monthly Trend + Ad Group ── -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Monthly Trend</div>
+      <div class="card-sub">Campaign launched Aug 5 — Sep outpaced Aug on leads and spend</div>
+      <div class="chart-holder">
+        <svg id="monthly-svg" viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="monthly-tip"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ad Group — CPL &amp; Lead Volume</div>
+      <div class="card-sub">Mortgage Application has the lowest CPL ($21) but minimal volume</div>
+      <div class="chart-holder">
+        <svg id="adgroup-svg" viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="adgroup-tip"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Lead Quality ── -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Credit Score Distribution</div>
+      <div class="card-sub">43 leads · 70% qualify at ≥620 · 30% in credit repair or disqualified</div>
+      <div class="chart-holder">
+        <svg id="credit-svg" viewBox="0 0 480 210" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="credit-tip"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Purchase Timeframe</div>
+      <div class="card-sub">14 leads had urgent timelines (ASAP / within 30 days) — most now aged 30–60 days</div>
+      <div class="chart-holder">
+        <svg id="timeframe-svg" viewBox="0 0 480 210" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="tooltip" id="timeframe-tip"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Search Terms + ZIP Routing ── -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Top Search Terms</div>
+      <div class="card-sub">494 unique terms · 60 days · phrase match · Iowa + competitor negatives added 9/4</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Search Term</th>
+            <th class="r">Clicks</th>
+            <th class="r">Spend</th>
+            <th class="r">Leads</th>
+            <th class="r">CPL</th>
+          </tr>
+        </thead>
+        <tbody id="search-terms-body"></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Lead Geography</div>
+      <div class="card-sub">35 of 43 leads in-state · 8 from Iowa border area</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Market</th>
+            <th class="r">Leads</th>
+            <th class="mini-bar-cell"></th>
+            <th>Share</th>
+          </tr>
+        </thead>
+        <tbody id="zip-routing-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Competitor + Ad Creative ── -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Competitive Landscape</div>
+      <div class="card-sub">Auction Insights · 23 advertisers · Aug 1 – Sep 29 · sorted by overlap rate</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Advertiser</th>
+            <th class="r">Imp. Share</th>
+            <th class="r">Overlap</th>
+            <th class="r">Top of Page</th>
+            <th class="r">Pos. Above</th>
+          </tr>
+        </thead>
+        <tbody id="auction-body"></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Top Ad Creative</div>
+      <div class="card-sub">10 ads tracked · FTHB group leads on CTR · Lenders group underperforming</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Headline</th>
+            <th class="r">Impr.</th>
+            <th class="r">Clicks</th>
+            <th class="r">CTR</th>
+          </tr>
+        </thead>
+        <tbody id="ads-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Day & Hour ── -->
+  <div>
+    <div class="section-hd"><h2>When Leads Convert</h2><span class="tag">Day &amp; Hour</span></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Conversions by Day of Week</div>
+        <div class="card-sub">Sunday tied for most leads with Wednesday</div>
+        <div class="chart-holder">
+          <svg id="dow-svg" viewBox="0 0 480 160" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="tooltip" id="dow-tip"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Conversions by Hour</div>
+        <div class="card-sub">4 PM accounts for 19% of all conversions</div>
+        <div class="chart-holder">
+          <svg id="hod-svg" viewBox="0 0 480 160" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="tooltip" id="hod-tip"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Findings ── -->
+  <div class="card">
+    <div class="section-hd" style="margin-bottom:14px;"><h2>Key Findings</h2></div>
+    <div class="findings" id="findings-list"></div>
+  </div>
+
+  <!-- ── Actions ── -->
+  <div>
+    <div class="section-hd"><h2>Recommended Actions</h2><span class="tag">Prioritized</span></div>
+    <div class="actions-grid" id="actions-grid"></div>
+  </div>
+
+  <div class="footer">
+    <span>Sources: Google Ads account 135-648-2091 (via rebel iQ MCC 6612664762) · rebel iQ funnel purchase-gershman-mortgage-ne.secure-clix.com · Lead export Sep 29, 2026</span>
+    <span>Generated Sep 29, 2026</span>
+  </div>
+</div>
+
+<script>
+// All charts use svg.innerHTML = string — most reliable in sandboxed iframes
+
+function setSvg(id, markup) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = markup;
+}
+
+// ─── Monthly grouped bar chart ─────────────────────────────────
+function drawMonthly() {
+  const W=480,H=200,pL=36,pR=14,pT=20,pB=48;
+  const cw=W-pL-pR, ch=H-pT-pB;
+  const metrics = [
+    {label:'Clicks', aug:113, sep:107, max:120, fA:'113', fS:'107'},
+    {label:'Spend',  aug:916, sep:975,  max:1000, fA:'$916', fS:'$975'},
+    {label:'Leads',  aug:20,  sep:23,   max:24,   fA:'20', fS:'23'},
+  ];
+  const accC='#294F9D', periC='#5D5EDA';
+  const gw=cw/metrics.length, bw=gw*0.28, gap=gw*0.08;
+  let h = '';
+  // gridlines — more visible so they read as reference lines
+  [0,50,100].forEach(pct=>{
+    const y=pT+ch-ch*(pct/100);
+    h+=`<line x1="${pL}" x2="${W-pR}" y1="${y}" y2="${y}" stroke="var(--t3)" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.5"/>`;
+  });
+  metrics.forEach((m,mi)=>{
+    const x0=pL+mi*gw+gw/2;
+    [{v:m.aug,c:accC,f:m.fA},{v:m.sep,c:periC,f:m.fS}].forEach((d,di)=>{
+      const barH=ch*d.v/m.max, x=x0+(di-0.5)*(bw+gap), y=pT+ch-barH;
+      h+=`<rect x="${x}" y="${y}" width="${bw}" height="${barH}" rx="3" fill="${d.c}"/>`;
+      // value label above bar — always uses high-contrast token color
+      h+=`<text x="${x+bw/2}" y="${y-5}" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">${d.f}</text>`;
+    });
+    h+=`<text x="${x0}" y="${H-pB+16}" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--t2)" font-family="Outfit,sans-serif">${m.label}</text>`;
+  });
+  // legend
+  [{c:accC,l:'Aug'},{c:periC,l:'Sep'}].forEach((d,i)=>{
+    const lx=pL+i*52;
+    h+=`<rect x="${lx}" y="${H-pB+28}" width="10" height="7" rx="2" fill="${d.c}"/>`;
+    h+=`<text x="${lx+14}" y="${H-pB+36}" font-size="10" font-weight="600" fill="var(--t2)" font-family="Outfit,sans-serif">${d.l}</text>`;
+  });
+  h+=`<text x="${W-pR}" y="${H-pB+36}" text-anchor="end" font-size="9.5" fill="var(--t3)" font-family="JetBrains Mono,monospace">Aug CPL $43.63 · Sep CPL $46.42</text>`;
+  setSvg('monthly-svg', h);
+}
+
+// ─── Ad group horizontal bars ──────────────────────────────────
+function drawAdGroups() {
+  const W=480,H=200,pL=140,pR=64,pT=12,pB=18;
+  const plotW=W-pL-pR, plotH=H-pT-pB;
+  const rows=[
+    {name:'First-Time Buyers',    cpl:44, leads:25, color:'#294F9D'},
+    {name:'Pre-Approval',         cpl:64, leads:8,  color:'#C0281E'},
+    {name:'Mortgage Lenders',     cpl:37, leads:6,  color:'#5D5EDA'},
+    {name:'Mortgage Application', cpl:21, leads:2,  color:'#0B7A50'},
+  ];
+  const maxCPL=70, rowH=plotH/rows.length;
+  let h='';
+  rows.forEach((r,i)=>{
+    const y=pT+i*rowH+rowH*0.22, bh=rowH*0.56, w=plotW*r.cpl/maxCPL;
+    h+=`<text x="${pL-8}" y="${y+bh/2+4}" text-anchor="end" font-size="10.5" fill="var(--t2)" font-family="Outfit,sans-serif">${r.name}</text>`;
+    h+=`<rect x="${pL}" y="${y}" width="${Math.max(w,2)}" height="${bh}" rx="3" fill="${r.color}"/>`;
+    h+=`<text x="${pL+w+6}" y="${y+bh/2+4}" font-size="10.5" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">$${r.cpl}</text>`;
+    h+=`<text x="${W-pR+2}" y="${y+bh/2+4}" font-size="10" fill="var(--t3)" font-family="JetBrains Mono,monospace">${r.leads}L</text>`;
+  });
+  h+=`<text x="${pL+plotW/2}" y="${H-2}" text-anchor="middle" font-size="9" fill="var(--t3)" font-family="Outfit,sans-serif">Cost Per Lead ($) →</text>`;
+  setSvg('adgroup-svg', h);
+}
+
+// ─── Credit score bars ─────────────────────────────────────────
+function drawCredit() {
+  const W=480,H=210,pL=148,pR=70,pT=10;
+  const plotW=W-pL-pR, plotH=H-pT-10;
+  const rows=[
+    {label:'Excellent (720+)',    n:11,pct:26,color:'#1A7A4A'},
+    {label:'Good (680–719)',      n:8, pct:19,color:'#3DA86A'},
+    {label:'Below Avg (620–659)', n:7, pct:16,color:'#5DBB8A'},
+    {label:'Fair (660–679)',      n:4, pct:9, color:'#85C9A8'},
+    null,
+    {label:'Poor (580–619)',      n:6, pct:14,color:'#E09A40'},
+    {label:'Bad (below 580)',     n:7, pct:16,color:'#CC4444'},
+  ];
+  const rCount=6, rowH=plotH/(rCount+0.8);
+  let h='', ri=0;
+  rows.forEach(r=>{
+    if(!r){
+      const lineY=pT+ri*rowH+rowH*0.1;
+      // threshold divider — styled as a meaningful callout, not a faint rule
+      h+=`<line x1="${pL-60}" x2="${W-4}" y1="${lineY}" y2="${lineY}" stroke="var(--pos)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.7"/>`;
+      // label right-anchored outside the bar zone so it never collides with bar values
+      h+=`<text x="${W-6}" y="${lineY-4}" text-anchor="end" font-size="9.5" font-weight="600" fill="var(--pos)" font-family="Outfit,sans-serif">70% qualify above · 30% below</text>`;
+      return;
+    }
+    const y=pT+ri*rowH+rowH*0.2, bh=rowH*0.6, w=plotW*r.n/11;
+    h+=`<text x="${pL-8}" y="${y+bh/2+4}" text-anchor="end" font-size="10.5" fill="var(--t2)" font-family="Outfit,sans-serif">${r.label}</text>`;
+    h+=`<rect x="${pL}" y="${y}" width="${Math.max(w,2)}" height="${bh}" rx="3" fill="${r.color}"/>`;
+    // value: n and pct always in high-contrast t1
+    h+=`<text x="${pL+w+6}" y="${y+bh/2+4}" font-size="10.5" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">${r.n} · ${r.pct}%</text>`;
+    ri++;
+  });
+  setSvg('credit-svg', h);
+}
+
+// ─── Timeframe bars ────────────────────────────────────────────
+function drawTimeframe() {
+  const W=480,H=210,pL=160,pR=38,pT=10;
+  const plotW=W-pL-pR, plotH=H-pT-18;
+  const rows=[
+    {label:'No Time Frame',        n:15,color:'#8A90A8',urgent:false},
+    {label:'Within 30 Days',       n:7, color:'#E05D1A',urgent:true},
+    {label:'3–6 Months',           n:6, color:'#457B9D',urgent:false},
+    {label:'ASAP / Offer Pending', n:5, color:'#C0281E',urgent:true},
+    {label:'2–3 Months',           n:5, color:'#5D5EDA',urgent:false},
+    {label:'6+ Months',            n:3, color:'#8A90A8',urgent:false},
+    {label:'Signed Agreement',     n:2, color:'#C0281E',urgent:true},
+  ];
+  const rowH=plotH/rows.length;
+  let h='';
+  rows.forEach((r,i)=>{
+    const y=pT+i*rowH+rowH*0.2, bh=rowH*0.6, w=plotW*r.n/16;
+    const urgMark = r.urgent ? '🔥 ' : '';
+    h+=`<text x="${pL-8}" y="${y+bh/2+4}" text-anchor="end" font-size="10.5" fill="var(--t2)" font-family="Outfit,sans-serif">${urgMark}${r.label}</text>`;
+    h+=`<rect x="${pL}" y="${y}" width="${Math.max(w,2)}" height="${bh}" rx="3" fill="${r.color}" opacity="${r.urgent?1:0.7}"/>`;
+    h+=`<text x="${pL+w+6}" y="${y+bh/2+4}" font-size="10.5" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">${r.n}</text>`;
+  });
+  h+=`<text x="${pL}" y="${H-3}" font-size="9" fill="var(--t3)" font-family="Outfit,sans-serif">🔥 urgent — needs immediate re-engagement</text>`;
+  setSvg('timeframe-svg', h);
+}
+
+// ─── Search terms table ─────────────────────────────────────────
+function renderSearchTerms() {
+  const terms = [
+    {term:'"first time home buyer nebraska"', clicks:21, spend:166.56, leads:5, cpl:33.31, note:'best'},
+    {term:'"first time home buyer"',          clicks:4,  spend:43.23,  leads:1, cpl:43.23, note:''},
+    {term:'"first time home buyer iowa" ✓',  clicks:4,  spend:37.87,  leads:0, cpl:null,  note:'fixed'},
+    {term:'"home loans pre approval"',        clicks:1,  spend:35.43,  leads:1, cpl:35.43, note:''},
+    {term:'"mortgage companies near me"',     clicks:1,  spend:32.73,  leads:0, cpl:null,  note:''},
+    {term:'"first time home buyer omaha ne"', clicks:1,  spend:24.17,  leads:1, cpl:24.17, note:'best'},
+    {term:'"mutual of omaha loans" ✓',       clicks:1,  spend:20.49,  leads:0, cpl:null,  note:'fixed'},
+    {term:'"first time home buyer lincoln ne"',clicks:2, spend:20.41,  leads:1, cpl:20.41, note:'best'},
+  ];
+  const tb = document.getElementById('search-terms-body');
+  tb.innerHTML = terms.map(t=>{
+    const cplStr = t.cpl ? '$'+t.cpl.toFixed(0) : '—';
+    const cplCls = t.note==='best' ? 'best-cpl' : t.note==='fixed' ? 'r' : 'r';
+    return `<tr>
+      <td style="font-size:11.5px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.term}</td>
+      <td class="r">${t.clicks}</td>
+      <td class="r">$${t.spend.toFixed(0)}</td>
+      <td class="r">${t.leads}</td>
+      <td class="${cplCls}">${cplStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── ZIP routing table ─────────────────────────────────────────
+function renderZipRouting() {
+  const routes = [
+    {city:'Lincoln',    zips:'68502–68528',    leads:12, max:12, routeC:'#294F9D', route:"Tracy's group"},
+    {city:'Omaha',      zips:'68104, 68106, 68111, 68130–68137', leads:11, max:12, routeC:'#1A7A4A', route:'→ Casey Parker'},
+    {city:'Elkhorn',    zips:'68022',          leads:2,  max:12, routeC:'#1A7A4A', route:'→ Casey Parker'},
+    {city:'York',       zips:'68467',          leads:2,  max:12, routeC:'#294F9D', route:"Tracy's group"},
+    {city:'Other NE',   zips:'Plattsmouth, Eagle, La Vista, Sidney…', leads:8, max:12, routeC:'#A05A0A', route:'Assess per lead'},
+    {city:'Iowa (out-of-state)', zips:'Council Bluffs area, Wayland IA', leads:8, max:12, routeC:'#C0281E', route:'Confirm IA license'},
+  ];
+  const tb = document.getElementById('zip-routing-body');
+  const total = routes.reduce((s,r)=>s+r.leads,0);
+  tb.innerHTML = routes.map(r=>`<tr>
+    <td>
+      <div class="city-nm">${r.city}</div>
+      <div class="zip-nm">${r.zips}</div>
+    </td>
+    <td class="r" style="font-family:'JetBrains Mono',monospace;font-weight:700">${r.leads}</td>
+    <td class="mini-bar-cell">
+      <div class="mini-track"><div class="mini-fill" style="width:${Math.round(r.leads/r.max*100)}%;background:${r.routeC}"></div></div>
+    </td>
+    <td class="r" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2)">${Math.round(r.leads/total*100)}%</td>
+  </tr>`).join('');
+}
+
+// ─── Findings ──────────────────────────────────────────────────
+function renderFindings() {
+  const items = [
+    {type:'warn', icon:'⚠️', title:'14 urgent leads have time-sensitive purchase timelines', body:'7 leads answered "Within 30 Days," 5 said ASAP/Offer Pending, 2 had a signed agreement. These are the highest-priority segment for immediate follow-up — direct LO outreach recovers a real percentage even at 30+ days.'},
+    {type:'warn', icon:'💸', title:'Campaign is limited by budget — leaving volume on the table', body:'Google\'s own diagnostics flag the $33/day cap as constraining the campaign. At $45 CPL with 70% of leads credit-qualified, increasing budget directly produces more qualified leads. Recommended test: $50–65/day.'},
+    {type:'info', icon:'🕓', title:'4 PM and Sundays are peak conversion times', body:'8 of 42 conversions (19%) happen at 4 PM. 9 of 42 happen on Sundays. Roughly 40% of leads arrive outside of typical business hours — speed-to-lead automation can capture these before they go cold.'},
+    {type:'good', icon:'✅', title:'$45 CPL is solid and lead quality is genuinely good', body:'70% of leads qualify on credit (≥620), 98% score HIGH or VERY_HIGH on contactability. Google tracked 42 conversions vs. rebel iQ\'s 43 — a near-perfect match that validates the funnel is counting correctly. CTR of 8.38% is above mortgage search benchmarks.'},
+    {type:'info', icon:'🏁', title:'Competitive position is defensible but fhaloans.com leads on impression share', body:'fhaloans.com has slightly higher impression share (26.42% vs 24.58%) and overlaps Gershman on 35% of auctions — the single most competitive threat. usdaloans.com overlaps 26.89% of the time. Gershman\'s 83.77% top-of-page rate is strong — better than Rocket (78.98%) and Zillow (81.05%). The "Lenders" comparison ad (3.89% CTR) is the only weak creative; the FTHB ad (11.74%) is the account\'s best performer.'},
+  ];
+  document.getElementById('findings-list').innerHTML = items.map(f=>`
+    <div class="finding ${f.type}">
+      <div class="finding-icon">${f.icon}</div>
+      <div>
+        <div class="finding-title">${f.title}</div>
+        <div class="finding-body">${f.body}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ─── Actions ───────────────────────────────────────────────────
+function renderActions() {
+  const acts = [
+    {owner:'gshm', ownerLbl:'Gershman Team', priority:'high', title:'Outreach to 14 aged urgent leads', desc:'7 leads answered "Within 30 Days," 5 said ASAP/Offer Pending, 2 had a signed agreement. Most are now 30–60 days old — direct LO outreach recovers a real percentage even at this age.'},
+    {owner:'rib', ownerLbl:'rebel iQ Ads', priority:'med', title:'Close the loop: Total Expert → Google Ads via advanced conversions', desc:'Now is the right time to feed lead status back into the campaign. When a lead reaches a meaningful stage in Total Expert (contacted, application, pre-approved), that signal can be sent back to Google via webhook and Total Expert\'s ODC reporting. This is how Smart Bidding learns what a quality lead actually looks like for Gershman — and it keeps CPL competitive as the campaign scales.'},
+    {owner:'gshm', ownerLbl:'Gershman — Amy', priority:'med', title:'Approve budget test to $50–65/day', desc:'The campaign is limited by budget and delivering $45 CPL. Increasing monthly spend by ~$500 should yield 10–12 additional qualified leads at the current rate. With routing fixed, those leads will actually get followed up.'},
+  ];
+  document.getElementById('actions-grid').innerHTML = acts.map(a=>`
+    <div class="action-card">
+      <div class="action-top">
+        <span class="action-owner-tag ${a.owner==='rib'?'owner-rib':'owner-gshm'}">${a.ownerLbl}</span>
+        <span class="priority ${a.priority}">${a.priority==='high'?'● High Priority':'● Medium Priority'}</span>
+      </div>
+      <div class="action-title">${a.title}</div>
+      <div class="action-desc">${a.desc}</div>
+    </div>`).join('');
+}
+
+// ─── Auction Insights table ────────────────────────────────────
+function renderAuction() {
+  const rows = [
+    {name:'You (Gershman)',     is:'24.58%', overlap:'—',      top:'83.77%', above:'—',     self:true},
+    {name:'usdaloans.com',     is:'21.02%', overlap:'26.89%', top:'78.92%', above:'32.07%'},
+    {name:'fhaloans.com',      is:'26.42%', overlap:'34.91%', top:'83.06%', above:'30.02%', leader:true},
+    {name:'wellsfargo.com',    is:'23.09%', overlap:'21.74%', top:'84.89%', above:'41.87%'},
+    {name:'zillow.com',        is:'18.80%', overlap:'21.38%', top:'81.05%', above:'28.29%'},
+    {name:'lendernearyou.com', is:'14.20%', overlap:'21.80%', top:'86.42%', above:'33.52%'},
+    {name:'veteransunited.com',is:'21.98%', overlap:'18.86%', top:'81.71%', above:'51.43%'},
+    {name:'cobaltcu.com',      is:'13.92%', overlap:'17.54%', top:'59.41%', above:'24.57%'},
+    {name:'rocketmortgage.com',is:'16.81%', overlap:'13.83%', top:'78.98%', above:'32.90%'},
+    {name:'nerdwallet.com',    is:'14.38%', overlap:'10.48%', top:'86.59%', above:'41.14%'},
+    {name:'chase.com',         is:'17.74%', overlap:'15.09%', top:'80.66%', above:'38.89%'},
+  ];
+  const tb = document.getElementById('auction-body');
+  tb.innerHTML = rows.map(r=>{
+    const bg = r.self ? 'background:rgba(41,79,157,.07);font-weight:700' : '';
+    const leaderMark = r.leader ? ' <span style="color:#C0281E;font-size:9px">▲IS</span>' : '';
+    return `<tr style="${bg}">
+      <td style="font-size:11.5px">${r.name}${leaderMark}</td>
+      <td class="${r.self?'r':'r'}" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-align:right;${r.leader?'color:#C0281E;font-weight:700':''}">${r.is}</td>
+      <td class="r" style="font-family:'JetBrains Mono',monospace;font-size:11px">${r.overlap}</td>
+      <td class="r" style="font-family:'JetBrains Mono',monospace;font-size:11px">${r.top}</td>
+      <td class="r" style="font-family:'JetBrains Mono',monospace;font-size:11px">${r.above}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Ad Creative table ─────────────────────────────────────────
+function renderAds() {
+  const ads = [
+    {group:'FTHB',        headline:'First-Time Home Buyer Loans | Special First Buyer Programs…', imp:843, clicks:99,  ctr:11.74, best:true},
+    {group:'Pre-Approval',headline:'Pre-Approval Benefits | Stand Out To Home Sellers…',         imp:594, clicks:53,  ctr:8.92,  best:false},
+    {group:'FTHB',        headline:'First Home Buying Guide | Learn First Home Loan Steps…',      imp:206, clicks:17,  ctr:8.25,  best:false},
+    {group:'Lenders',     headline:'Mortgage Lender Near You | Work With A Trusted Lender…',     imp:196, clicks:11,  ctr:5.61,  best:false},
+    {group:'Lenders',     headline:'Top Mortgage Lenders Near You | Find Best Mortgage Lender…', imp:283, clicks:11,  ctr:3.89,  bad:true},
+  ];
+  const tb = document.getElementById('ads-body');
+  tb.innerHTML = ads.map(a=>`<tr>
+    <td>
+      <div style="font-size:11px;line-height:1.4">${a.headline}</div>
+      <div style="font-size:10px;color:var(--t3);margin-top:2px">${a.group}</div>
+    </td>
+    <td class="r">${a.imp.toLocaleString()}</td>
+    <td class="r">${a.clicks}</td>
+    <td class="${a.best?'best-cpl':a.bad?'bad-cpl':'r'}">${a.ctr.toFixed(2)}%</td>
+  </tr>`).join('');
+}
+
+// ─── Day of week bars ──────────────────────────────────────────
+function drawDow() {
+  const W=480,H=160,pL=14,pR=14,pT=18,pB=36;
+  const plotW=W-pL-pR, plotH=H-pT-pB;
+  const days=[
+    {d:'Sun',n:9,peak:true},{d:'Mon',n:7},{d:'Tue',n:4},{d:'Wed',n:9,peak:true},
+    {d:'Thu',n:2,low:true},{d:'Fri',n:4},{d:'Sat',n:6},
+  ];
+  const maxN=9, bw=plotW/days.length;
+  let h='';
+  days.forEach((d,i)=>{
+    const x=pL+i*bw, barW=bw*0.6, barX=x+(bw-barW)/2;
+    const barH=plotH*d.n/maxN, barY=pT+plotH-barH;
+    const c=d.peak?'#294F9D':d.low?'#CC4444':'#5D5EDA';
+    h+=`<rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" rx="3" fill="${c}"/>`;
+    // value above bar: always high-contrast
+    h+=`<text x="${barX+barW/2}" y="${barY-5}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">${d.n}</text>`;
+    // day label below: t2 for most, accent for peaks
+    h+=`<text x="${barX+barW/2}" y="${H-pB+15}" text-anchor="middle" font-size="11" font-weight="${d.peak?700:500}" fill="${d.peak?'var(--accent-l)':'var(--t2)'}" font-family="Outfit,sans-serif">${d.d}</text>`;
+  });
+  h+=`<text x="${pL}" y="${H-2}" font-size="9" fill="var(--t3)" font-family="Outfit,sans-serif">● peak day · no weekend coverage</text>`;
+  setSvg('dow-svg', h);
+}
+
+// ─── Hour of day bars ──────────────────────────────────────────
+function drawHod() {
+  const W=480,H=160,pL=14,pR=14,pT=18,pB=36;
+  const plotW=W-pL-pR, plotH=H-pT-pB;
+  const hours=[
+    {h:'12a',n:2},{h:'1a',n:1},{h:'2a',n:1},{h:'3a',n:1},{h:'4a',n:1},{h:'5a',n:0},
+    {h:'6a',n:0},{h:'7a',n:2},{h:'8a',n:2},{h:'9a',n:4},{h:'10a',n:0},{h:'11a',n:4},
+    {h:'12p',n:2},{h:'1p',n:3},{h:'2p',n:4},{h:'3p',n:1},{h:'4p',n:8,peak:true},
+    {h:'5p',n:1},{h:'6p',n:1},{h:'7p',n:0},{h:'8p',n:3},{h:'9p',n:0},{h:'10p',n:0},{h:'11p',n:0},
+  ];
+  const maxN=8, bw=plotW/hours.length;
+  let h='';
+  hours.forEach((hh,i)=>{
+    const x=pL+i*bw, barW=bw*0.72, barX=x+(bw-barW)/2;
+    // hour label — peak in accent color, others in t3
+    h+=`<text x="${barX+barW/2}" y="${H-pB+15}" text-anchor="middle" font-size="7.5" font-weight="${hh.peak?700:400}" fill="${hh.peak?'var(--neg)':'var(--t3)'}" font-family="Outfit,sans-serif">${hh.h}</text>`;
+    if(hh.n===0) return;
+    const barH=plotH*hh.n/maxN, barY=pT+plotH-barH;
+    const c=hh.peak?'#CC4444':'#5D5EDA';
+    h+=`<rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" rx="2" fill="${c}"/>`;
+    // only label the peak and near-peak bars to avoid clutter
+    if(hh.peak||hh.n>=4) h+=`<text x="${barX+barW/2}" y="${barY-5}" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--t1)" font-family="JetBrains Mono,monospace">${hh.n}</text>`;
+  });
+  h+=`<text x="${pL}" y="${H-2}" font-size="9" fill="var(--t3)" font-family="Outfit,sans-serif">● 4 PM = 8 leads (19% of all)</text>`;
+  setSvg('hod-svg', h);
+}
+
+// ─── Init ──────────────────────────────────────────────────────
+function render() {
+  document.querySelectorAll('svg').forEach(s=>{ while(s.firstChild) s.removeChild(s.firstChild); });
+  drawMonthly();
+  drawAdGroups();
+  drawCredit();
+  drawTimeframe();
+  drawDow();
+  drawHod();
+  renderSearchTerms();
+  renderZipRouting();
+  renderAuction();
+  renderAds();
+  renderFindings();
+  renderActions();
+}
+
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
+document.readyState==='loading' ? document.addEventListener('DOMContentLoaded',render) : render();
+</script>
