@@ -2,6 +2,71 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 
 <style>
+#pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #09175C;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+#pw-gate.hidden { display: none; }
+.pw-box {
+  background: #0F1E4A; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 360px;
+  display: flex; flex-direction: column; gap: 20px; text-align: center;
+}
+.pw-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7B9BDF; }
+.pw-title { font-size: 22px; font-weight: 800; color: #D4DFFA; letter-spacing: -.01em; }
+.pw-sub { font-size: 13px; color: #7B93CC; }
+.pw-input {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
+  color: #D4DFFA; font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; text-align: center; letter-spacing: .05em;
+}
+.pw-input:focus { border-color: #5B78D8; }
+.pw-btn {
+  width: 100%; padding: 12px; border-radius: 8px; border: none;
+  background: #294F9D; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s;
+}
+.pw-btn:hover { background: #3560B8; }
+.pw-error { font-size: 12px; color: #F0594F; min-height: 16px; }
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div>
+      <div class="pw-eyebrow">rebel iQ · Gershman Mortgage</div>
+      <div class="pw-title">Nebraska Ads Report</div>
+    </div>
+    <div class="pw-sub">Enter your access code to view this report.</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Access code" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">View Report</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'riq_gershman_ne_auth';
+  const PASS = 'gershman2026';
+  function unlock(){ document.getElementById('pw-gate').classList.add('hidden'); }
+  try { if(localStorage.getItem(KEY)==='1') unlock(); } catch(e){}
+  document.getElementById('pw-btn').addEventListener('click', function(){
+    if(document.getElementById('pw-input').value === PASS){
+      try { localStorage.setItem(KEY,'1'); } catch(e){}
+      unlock();
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code — try again.';
+    }
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('pw-btn').click();
+  });
+})();
+</script>
+
+<style>
 /* ─── Tokens ───────────────────────────────────────────────────── */
 :root {
   --bg:       #E8EEF8;
