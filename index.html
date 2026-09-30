@@ -10,29 +10,74 @@
 :root { --bg: #E8EEF8; --surface: #fff; --border: #D2DCF0; --t1: #0B1538; --t2: #3D5080; --t3: #7D90B8; --accent: #09175C; --accent-l: #294F9D; }
 @media (prefers-color-scheme: dark) { :root { --bg: #080F24; --surface: #0F1A36; --border: #1E2D55; --t1: #D4DFFA; --t2: #7B93CC; --t3: #3A5082; --accent: #5B78D8; --accent-l: #7B9BDF; color-scheme: dark; } }
 body { font-family: 'Outfit', system-ui, sans-serif; background: var(--bg); color: var(--t1); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
-.wrap { max-width: 480px; width: 100%; text-align: center; }
+.wrap { max-width: 520px; width: 100%; }
+.logo-wrap { margin-bottom: 28px; }
 .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-l); margin-bottom: 10px; }
 h1 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; }
 .sub { font-size: 14px; color: var(--t2); margin-bottom: 36px; }
-.reports { display: flex; flex-direction: column; gap: 10px; text-align: left; }
-.report-link { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; text-decoration: none; color: inherit; transition: border-color .15s; }
+.clients { display: flex; flex-direction: column; gap: 16px; }
+.client-block {}
+.client-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--t3); margin-bottom: 8px; padding-left: 2px; }
+.reports { display: flex; flex-direction: column; gap: 8px; }
+.report-link { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: inherit; transition: border-color .15s; }
 .report-link:hover { border-color: var(--accent-l); }
-.report-client { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--t3); margin-bottom: 4px; }
-.report-title { font-size: 15px; font-weight: 700; color: var(--t1); }
-.report-meta { font-size: 11.5px; color: var(--t3); margin-top: 3px; }
+.report-channel { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--t3); margin-bottom: 3px; }
+.report-title { font-size: 14px; font-weight: 700; color: var(--t1); }
+.report-meta { font-size: 11px; color: var(--t3); margin-top: 2px; }
+.arrow { color: var(--t3); font-size: 18px; }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="logo-wrap">
+    <picture>
+      <source srcset="/assets/logo-white.svg" media="(prefers-color-scheme:dark)">
+      <img src="/assets/logo-color.svg" alt="rebel iQ" style="height:22px;display:block">
+    </picture>
+  </div>
   <div class="eyebrow">rebel iQ</div>
   <h1>Ad Reporting</h1>
   <p class="sub">Client campaign dashboards</p>
-  <div class="reports">
-    <a class="report-link" href="gershman/nebraska-google-ads/">
-      <div class="report-client">Gershman Mortgage</div>
-      <div class="report-title">Nebraska — Google Ads</div>
-      <div class="report-meta">Aug 1 – Sep 29, 2026</div>
-    </a>
+  <div class="clients">
+    <div class="client-block">
+      <div class="client-label">Gershman Mortgage</div>
+      <div class="reports">
+        <a class="report-link" href="gershman/">
+          <div>
+            <div class="report-channel">Google Ads</div>
+            <div class="report-title">Nebraska</div>
+            <div class="report-meta">Aug 1 – Sep 29, 2026</div>
+          </div>
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </div>
+    <div class="client-block">
+      <div class="client-label">United Purpose Lending</div>
+      <div class="reports">
+        <a class="report-link" href="united-purpose/aug-sep-2026/">
+          <div>
+            <div class="report-channel">Google + Meta</div>
+            <div class="report-title">Ads Performance Check-In</div>
+            <div class="report-meta">Jun 1 – Sep 29, 2026</div>
+          </div>
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </div>
+    <div class="client-block">
+      <div class="client-label">ReziLoans</div>
+      <div class="reports">
+        <a class="report-link" href="reziloans/aug-sep-2026/">
+          <div>
+            <div class="report-channel">Google + Meta</div>
+            <div class="report-title">Ads Report</div>
+            <div class="report-meta">Feb 13 – Sep 22, 2026</div>
+          </div>
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 </body>

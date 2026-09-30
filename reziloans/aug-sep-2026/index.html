@@ -1,0 +1,852 @@
+<title>ReziLoans Ads</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+#pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #09175C;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+#pw-gate.hidden { display: none; }
+.pw-box {
+  background: #0F1E4A; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 360px;
+  display: flex; flex-direction: column; gap: 20px; text-align: center;
+}
+.pw-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7B9BDF; }
+.pw-title { font-size: 22px; font-weight: 800; color: #D4DFFA; letter-spacing: -.01em; }
+.pw-sub { font-size: 13px; color: #7B93CC; }
+.pw-input {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
+  color: #D4DFFA; font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; text-align: center; letter-spacing: .05em;
+}
+.pw-input:focus { border-color: #5B78D8; }
+.pw-btn {
+  width: 100%; padding: 12px; border-radius: 8px; border: none;
+  background: #294F9D; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s;
+}
+.pw-btn:hover { background: #3560B8; }
+.pw-error { font-size: 12px; color: #F0594F; min-height: 16px; }
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div>
+      <img src="/assets/logo-white.svg" alt="rebel iQ" style="height:32px;margin-bottom:18px;opacity:.9">
+      <div class="pw-eyebrow">ReziLoans</div>
+      <div class="pw-title">Ads Report</div>
+    </div>
+    <div class="pw-sub">Enter your access code to view this report.</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Access code" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">View Report</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'riq_rezi_auth';
+  const PASS = 'rezi2026';
+  function unlock(){ document.getElementById('pw-gate').classList.add('hidden'); }
+  try { if(localStorage.getItem(KEY)==='1') unlock(); } catch(e){}
+  document.getElementById('pw-btn').addEventListener('click', function(){
+    if(document.getElementById('pw-input').value === PASS){
+      try { localStorage.setItem(KEY,'1'); } catch(e){}
+      unlock();
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code — try again.';
+    }
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('pw-btn').click();
+  });
+})();
+</script>
+
+<style>
+:root {
+  --bg:       #EAF0F8;
+  --surface:  #FFFFFF;
+  --s2:       #F3F7FC;
+  --border:   #DDE5F2;
+  --t1:       #0C1929;
+  --t2:       #4A607C;
+  --t3:       #8FA5BC;
+  --accent:   #1A6EF5;
+  --pos:      #0A9170;
+  --neg:      #D42828;
+  --warn:     #C97A00;
+  --pos-bg:   #E5F5EF;
+  --neg-bg:   #FDEAEA;
+  --shadow:   0 1px 4px rgba(12,25,41,.07), 0 4px 12px rgba(12,25,41,.05);
+  --radius:   10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #0B1221;
+    --surface: #131D30;
+    --s2:      #192540;
+    --border:  #243350;
+    --t1:      #D8E8F8;
+    --t2:      #6C88A8;
+    --t3:      #3A5070;
+    --accent:  #3D8EFF;
+    --pos:     #12C490;
+    --neg:     #FF4D3F;
+    --warn:    #FFB020;
+    --pos-bg:  #0A2218;
+    --neg-bg:  #250A0A;
+    --shadow:  0 1px 4px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:      #0B1221;
+  --surface: #131D30;
+  --s2:      #192540;
+  --border:  #243350;
+  --t1:      #D8E8F8;
+  --t2:      #6C88A8;
+  --t3:      #3A5070;
+  --accent:  #3D8EFF;
+  --pos:     #12C490;
+  --neg:     #FF4D3F;
+  --warn:    #FFB020;
+  --pos-bg:  #0A2218;
+  --neg-bg:  #250A0A;
+  --shadow:  0 1px 4px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  padding: 28px 24px 40px;
+  min-height: 100vh;
+}
+
+.dash { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.eyebrow {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--t3); margin-bottom: 4px;
+}
+.dash-title { font-size: 24px; font-weight: 700; color: var(--t1); line-height: 1; }
+.dash-title .channel { color: var(--accent); }
+.header-meta { text-align: right; }
+.header-date { font-size: 13px; font-weight: 600; color: var(--t2); }
+.header-sub { font-size: 11px; color: var(--t3); margin-top: 2px; }
+.story-pills { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 20px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .03em;
+}
+.pill-pos { background: var(--pos-bg); color: var(--pos); }
+.pill-neg { background: var(--neg-bg); color: var(--neg); }
+.pill-warn { background: #FFF4E0; color: var(--warn); }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── KPI tiles ─── */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px 16px;
+  box-shadow: var(--shadow);
+}
+.kpi-label {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--t3); margin-bottom: 10px;
+}
+.kpi-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px; font-weight: 500; color: var(--t1); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-delta { display: flex; align-items: center; gap: 5px; margin-top: 7px; font-size: 11.5px; color: var(--t2); }
+.kpi-delta .badge {
+  display: inline-block; padding: 1px 6px; border-radius: 4px;
+  font-size: 10.5px; font-weight: 600;
+}
+.badge-pos { background: var(--pos-bg); color: var(--pos); }
+.badge-neg { background: var(--neg-bg); color: var(--neg); }
+.badge-flat { background: var(--s2); color: var(--t2); }
+
+/* ─── Card ─── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.card-hd { margin-bottom: 14px; }
+.card-title { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.card-sub { font-size: 11px; color: var(--t3); }
+.chart-legend { display: flex; gap: 14px; margin-top: 5px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--t2); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* ─── Charts row ─── */
+.charts-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.chart-wrap { width: 100%; }
+.chart-wrap svg { display: block; width: 100%; overflow: visible; }
+
+/* ─── Bottom rows ─── */
+.bottom-row  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.bottom-row2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.crm-row     { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; margin-bottom: 14px; }
+.quality-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.status-table { width: 100%; border-collapse: collapse; }
+.status-table td { font-size: 11px; padding: 3px 0; color: var(--t1); }
+.status-table td.r { text-align: right; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 10.5px; }
+.status-table td.cat { font-size: 9.5px; color: var(--t3); text-transform: uppercase; letter-spacing: .06em; padding-top: 9px; padding-bottom: 1px; }
+.status-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+
+.lead-grid    { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.lead-col     { }
+.lead-ch-name { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 8px; }
+.lead-stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.lead-stat-row:last-child { border-bottom: none; }
+.lead-stat-lbl { font-size: 10.5px; color: var(--t3); }
+.lead-stat-val { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.lead-divider  { height: 1px; background: var(--border); margin: 10px 0; }
+.timeline-wrap { }
+.timeline-lbl-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.tl-title { font-size: 10.5px; color: var(--t3); }
+.tl-val   { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--t2); }
+.tl-bar-bg  { background: var(--s2); border-radius: 3px; height: 5px; margin-bottom: 6px; }
+.tl-bar-fill { border-radius: 3px; height: 5px; }
+
+.county-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+.county-table th { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); padding: 0 0 7px; text-align: left; border-bottom: 1px solid var(--border); }
+.county-table th.r { text-align: right; }
+.county-table td { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.county-table tr:last-child td { border-bottom: none; }
+.county-name  { color: var(--t1); max-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.county-conv  { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t2); text-align: right; padding-right: 10px; }
+.county-cpl   { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+.section-label { font-size: 9.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 8px 0 4px; color: var(--t3); }
+
+.is-breakdown { margin-bottom: 16px; }
+.is-bar-stack { display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; margin: 10px 0 8px; }
+.is-seg { height: 100%; }
+.is-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.is-leg-item { display: flex; align-items: center; gap: 5px; font-size: 10.5px; color: var(--t2); }
+.is-leg-dot  { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.is-status   { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 20px; background: var(--neg-bg); color: var(--neg); font-size: 10px; font-weight: 600; letter-spacing: .04em; margin-bottom: 12px; }
+.is-context  { font-size: 11px; color: var(--t2); line-height: 1.55; padding: 10px 12px; background: var(--s2); border-radius: 7px; margin-bottom: 14px; }
+.is-context strong { color: var(--t1); font-weight: 600; }
+
+.comp-table { width: 100%; border-collapse: collapse; }
+.comp-table th { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); padding: 0 0 7px; text-align: left; border-bottom: 1px solid var(--border); }
+.comp-table th.r { text-align: right; }
+.comp-table td { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-name   { color: var(--t2); max-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.comp-name.hl { color: var(--accent); font-weight: 700; }
+.comp-is     { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; text-align: right; padding-right: 8px; font-variant-numeric: tabular-nums; }
+.comp-is.hl  { color: var(--accent); }
+.comp-ovlp   { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t2); text-align: right; padding-right: 8px; font-variant-numeric: tabular-nums; }
+.comp-bar-cell { width: 50px; }
+.comp-bar-track { background: var(--s2); border-radius: 2px; height: 4px; }
+.comp-bar-fill  { height: 4px; border-radius: 2px; }
+.ovlp-note   { font-size: 10px; color: var(--t3); margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+.funnel-stages { display: flex; flex-direction: column; gap: 14px; }
+.funnel-item {}
+.funnel-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.funnel-name { font-size: 11.5px; color: var(--t2); }
+.funnel-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--t1); font-variant-numeric: tabular-nums; }
+.funnel-track { background: var(--s2); border-radius: 4px; height: 7px; }
+.funnel-fill { height: 7px; border-radius: 4px; }
+.funnel-divider { height: 1px; background: var(--border); margin: 12px 0; }
+.funnel-split { display: flex; gap: 16px; }
+.split-item { font-size: 11.5px; color: var(--t2); }
+.split-item strong { font-family: 'JetBrains Mono', monospace; color: var(--t1); font-weight: 500; font-size: 12px; }
+
+.kw-table { width: 100%; border-collapse: collapse; }
+.kw-table th {
+  font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--t3); padding: 0 0 8px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.kw-table th.r { text-align: right; }
+.kw-table td { padding: 8px 0; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 11.5px; }
+.kw-table tr:last-child td { border-bottom: none; }
+.kw-name { color: var(--t1); font-weight: 500; max-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kw-conv { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--t2); text-align: right; padding-right: 10px; font-variant-numeric: tabular-nums; }
+.kw-cpl { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; text-align: right; padding-right: 10px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.kw-is-cell { width: 80px; }
+.kw-is-row { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+.kw-is-track { width: 36px; height: 4px; background: var(--s2); border-radius: 2px; flex-shrink: 0; }
+.kw-is-fill { height: 4px; border-radius: 2px; background: var(--accent); }
+.kw-is-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--t2); min-width: 30px; text-align: right; }
+
+.next-steps-section { margin-top: 14px; }
+.next-steps-hd { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.next-steps-title { font-size: 13px; font-weight: 600; color: var(--t1); }
+.next-steps-sub { font-size: 11px; color: var(--t3); }
+.next-steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ns-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+.ns-top { display: flex; align-items: center; justify-content: space-between; }
+.ns-channel { font-size: 9.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; }
+.ns-channel.google { background: rgba(26,110,245,.12); color: var(--accent); }
+.ns-channel.facebook { background: var(--s2); color: var(--t2); }
+.ns-priority { font-size: 9.5px; font-weight: 600; letter-spacing: .04em; }
+.ns-priority.high { color: var(--neg); }
+.ns-priority.medium { color: var(--warn); }
+.ns-card-title { font-size: 12.5px; font-weight: 600; color: var(--t1); }
+.ns-card-body { font-size: 11.5px; color: var(--t2); line-height: 1.55; }
+.ns-card-body strong { color: var(--t1); font-weight: 600; }
+
+.tip {
+  position: fixed; pointer-events: none; z-index: 200;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 7px; padding: 8px 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  font-size: 11.5px; color: var(--t1);
+  min-width: 110px; display: none;
+  transition: opacity .1s;
+}
+.tip-lbl { font-size: 10.5px; color: var(--t3); margin-bottom: 3px; }
+.tip-val { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 13px; }
+</style>
+
+<div class="dash">
+
+  <div class="header">
+    <div>
+      <picture style="display:block;margin-bottom:10px">
+        <source srcset="/assets/logo-white.svg" media="(prefers-color-scheme:dark)">
+        <img src="/assets/logo-color.svg" alt="rebel iQ" style="height:22px;display:block">
+      </picture>
+      <div class="eyebrow">Paid Ads · Sep 22, 2026</div>
+      <div class="dash-title">ReziLoans <span class="channel">Ads</span></div>
+    </div>
+    <div class="header-meta">
+      <div class="header-date">Feb 13 – Sep 22, 2026</div>
+      <div class="header-sub">Google Search + Meta · TX / CA / GA + MD (expanded Sep 10)</div>
+      <div class="story-pills">
+        <span class="pill pill-pos"><span class="pill-dot" style="background:var(--pos)"></span>Google quality recovering</span>
+        <span class="pill pill-neg"><span class="pill-dot" style="background:var(--neg)"></span>FB credit still structural</span>
+        <span class="pill pill-warn"><span class="pill-dot" style="background:var(--warn)"></span>V3 copy live — early</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Google CPL</div>
+      <div class="kpi-val">$53</div>
+      <div class="kpi-delta"><span class="badge badge-neg">↑26%</span> from $42 — optimizing quality</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Closeable Leads</div>
+      <div class="kpi-val">35%</div>
+      <div class="kpi-delta"><span class="badge badge-pos">↑16pp</span> from 19% — FL removed Sep 10</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">CRM Meeting Rate</div>
+      <div class="kpi-val">18%</div>
+      <div class="kpi-delta"><span class="badge badge-flat">Steady</span> consistent all periods</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Google Leads / Wk</div>
+      <div class="kpi-val">16</div>
+      <div class="kpi-delta"><span class="badge badge-pos">↑23%</span> vs 13 prior period</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Facebook CPL</div>
+      <div class="kpi-val">$33.89</div>
+      <div class="kpi-delta"><span class="badge badge-neg">7%</span> closeable · 108 pixel leads all-time</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Total Leads Exported</div>
+      <div class="kpi-val">511</div>
+      <div class="kpi-delta"><span class="badge badge-flat">331 G</span> · <span class="badge badge-flat">180 FB</span> all-time</div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Google Cost Per Lead</div>
+        <div class="card-sub">Five-period trend · 276 conv · $14,542 spend · $52.69 all-time blended · FL removed Sep 10</div>
+      </div>
+      <div class="chart-wrap"><svg id="cpl-svg" viewBox="0 0 460 190" preserveAspectRatio="xMidYMid meet"></svg></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Google Lead Credit Quality</div>
+        <div class="card-sub">% of new Google leads per period</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--pos)"></div>Closeable 660+</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--neg)"></div>Bad/Poor &lt;620</div>
+        </div>
+      </div>
+      <div class="chart-wrap"><svg id="cred-svg" viewBox="0 0 460 190" preserveAspectRatio="xMidYMid meet"></svg></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Facebook Lead Credit Quality</div>
+        <div class="card-sub">% of new Facebook leads per period</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--pos)"></div>Closeable 660+</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--neg)"></div>Bad/Poor &lt;620</div>
+        </div>
+      </div>
+      <div class="chart-wrap"><svg id="fb-cred-svg" viewBox="0 0 460 190" preserveAspectRatio="xMidYMid meet"></svg></div>
+    </div>
+  </div>
+
+  <div class="crm-row">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">CRM Funnel</div>
+        <div class="card-sub">361 CRM leads · May–Sep 22 · Shape CRM</div>
+      </div>
+      <div class="funnel-stages">
+        <div class="funnel-item">
+          <div class="funnel-hd">
+            <span class="funnel-name">Leads in CRM · 361</span>
+            <span class="funnel-num"><span style="color:var(--accent)">G 248</span>&thinsp;·&thinsp;<span style="color:var(--warn)">FB 113</span></span>
+          </div>
+          <div class="funnel-track">
+            <div style="display:flex;height:7px;border-radius:4px;overflow:hidden">
+              <div style="width:68.7%;background:var(--accent)"></div>
+              <div style="width:31.3%;background:var(--warn)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="funnel-item">
+          <div class="funnel-hd">
+            <span class="funnel-name">Meetings Held · 65</span>
+            <span class="funnel-num"><span style="color:var(--accent)">G 44</span>&thinsp;·&thinsp;<span style="color:var(--warn)">FB 21</span></span>
+          </div>
+          <div class="funnel-track">
+            <div style="display:flex;height:7px;border-radius:4px;overflow:hidden">
+              <div style="width:12.2%;background:var(--accent)"></div>
+              <div style="width:5.8%;background:var(--warn)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="funnel-item">
+          <div class="funnel-hd">
+            <span class="funnel-name">Applications · 9</span>
+            <span class="funnel-num"><span style="color:var(--accent)">G 6</span>&thinsp;·&thinsp;<span style="color:var(--warn)">FB 3</span></span>
+          </div>
+          <div class="funnel-track">
+            <div style="display:flex;height:7px;border-radius:4px;overflow:hidden">
+              <div style="width:1.66%;background:var(--accent)"></div>
+              <div style="width:0.83%;background:var(--warn)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-divider"></div>
+      <div class="funnel-split">
+        <div class="split-item"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);margin-right:5px;vertical-align:middle"></span>Google</div>
+        <div class="split-item"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--warn);margin-right:5px;vertical-align:middle"></span>Facebook</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Lead Status Breakdown</div>
+        <div class="card-sub">All 361 leads · May–Sep 22</div>
+      </div>
+      <div class="status-cols">
+        <table class="status-table">
+          <tbody>
+            <tr><td class="cat" colspan="3">Nurturing</td></tr>
+            <tr><td>Long-Term Nurture</td><td class="r">167</td><td class="r" style="color:var(--t3)">46%</td></tr>
+            <tr><td>Unqualified – LTN</td><td class="r">112</td><td class="r" style="color:var(--t3)">31%</td></tr>
+            <tr><td class="cat" colspan="3">Active / In Progress</td></tr>
+            <tr><td>New Lead – Assigned</td><td class="r">22</td><td class="r" style="color:var(--t3)">6.1%</td></tr>
+            <tr><td>Missed Appt – Reschedule</td><td class="r">5</td><td class="r" style="color:var(--t3)">1.4%</td></tr>
+            <tr><td>Appointment Scheduled</td><td class="r">3</td><td class="r" style="color:var(--t3)">0.8%</td></tr>
+            <tr><td>New Lead</td><td class="r">3</td><td class="r" style="color:var(--t3)">0.8%</td></tr>
+            <tr><td>Attempting Contact</td><td class="r">2</td><td class="r" style="color:var(--t3)">0.6%</td></tr>
+            <tr><td style="color:var(--pos)">Actively Working</td><td class="r" style="color:var(--pos)">5</td><td class="r" style="color:var(--pos)">1.4%</td></tr>
+          </tbody>
+        </table>
+        <table class="status-table">
+          <tbody>
+            <tr><td class="cat" colspan="3">Applied</td></tr>
+            <tr><td style="color:var(--pos)">Application Sent</td><td class="r" style="color:var(--pos)">6</td><td class="r" style="color:var(--pos)">1.7%</td></tr>
+            <tr><td style="color:var(--pos)">Application Started</td><td class="r" style="color:var(--pos)">2</td><td class="r" style="color:var(--pos)">0.6%</td></tr>
+            <tr><td style="color:var(--pos)">Borrower Docs Needed</td><td class="r" style="color:var(--pos)">1</td><td class="r" style="color:var(--pos)">0.3%</td></tr>
+            <tr><td class="cat" colspan="3">Disqualified / Out</td></tr>
+            <tr><td style="color:var(--neg)">Do Not Contact</td><td class="r" style="color:var(--neg)">20</td><td class="r" style="color:var(--neg)">5.5%</td></tr>
+            <tr><td style="color:var(--neg)">Invalid Contact</td><td class="r" style="color:var(--neg)">6</td><td class="r" style="color:var(--neg)">1.7%</td></tr>
+            <tr><td style="color:var(--neg)">Credit Repair</td><td class="r" style="color:var(--neg)">5</td><td class="r" style="color:var(--neg)">1.4%</td></tr>
+            <tr><td style="color:var(--neg)">Not Interested</td><td class="r" style="color:var(--neg)">1</td><td class="r" style="color:var(--neg)">0.3%</td></tr>
+            <tr><td style="color:var(--neg)">Ineligible</td><td class="r" style="color:var(--neg)">1</td><td class="r" style="color:var(--neg)">0.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="quality-row">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Lead Quality — Both Channels</div>
+        <div class="card-sub">Latest period · Aug 25 – Sep 22</div>
+      </div>
+      <div class="lead-grid">
+        <div class="lead-col">
+          <div class="lead-ch-name" style="color:var(--accent)">Google</div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Closeable 660+</span><span class="lead-stat-val" style="color:var(--pos)">35%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Mid 620–659</span><span class="lead-stat-val">13%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Bad/Poor &lt;620</span><span class="lead-stat-val" style="color:var(--neg)">52%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">$200K+ Price</span><span class="lead-stat-val" style="color:var(--pos)">84%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Leads</span><span class="lead-stat-val">62</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">CPL</span><span class="lead-stat-val">~$53</span></div>
+        </div>
+        <div class="lead-col">
+          <div class="lead-ch-name" style="color:var(--t2)">Facebook</div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Closeable 660+</span><span class="lead-stat-val" style="color:var(--neg)">7%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Mid 620–659</span><span class="lead-stat-val">31%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Bad/Poor &lt;620</span><span class="lead-stat-val" style="color:var(--neg)">62%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">$200K+ Price</span><span class="lead-stat-val" style="color:var(--pos)">100%</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">Leads</span><span class="lead-stat-val">29</span></div>
+          <div class="lead-stat-row"><span class="lead-stat-lbl">CPL</span><span class="lead-stat-val">$33.89</span></div>
+        </div>
+      </div>
+      <div class="lead-divider"></div>
+      <div class="timeline-wrap" id="timeline-wrap"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">County CPL</div>
+        <div class="card-sub">Historical Google · FL removed Sep 10 · TX/CA remain active</div>
+      </div>
+      <table class="county-table">
+        <thead><tr>
+          <th style="width:60%">County</th>
+          <th class="r">Conv</th>
+          <th class="r">CPL</th>
+        </tr></thead>
+        <tbody id="county-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bottom-row2">
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Top Keywords</div>
+        <div class="card-sub">All-time · Google Search</div>
+      </div>
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th style="width:46%">Keyword</th>
+            <th class="r" style="width:12%">Conv</th>
+            <th class="r" style="width:12%">CPL</th>
+            <th class="r kw-is-cell">IS</th>
+          </tr>
+        </thead>
+        <tbody id="kw-body"></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Impression Share Breakdown</div>
+        <div class="card-sub">All-time · Google Search · where do eligible searches go?</div>
+      </div>
+
+      <div class="is-breakdown">
+        <div class="is-status">⚠ Eligible (Limited) — limited by budget</div>
+        <div class="is-bar-stack">
+          <div class="is-seg" style="width:12.38%;background:var(--accent);border-radius:6px 0 0 6px"></div>
+          <div class="is-seg" style="width:77.49%;background:var(--neg);opacity:.55"></div>
+          <div class="is-seg" style="flex:1;background:var(--warn);opacity:.55;border-radius:0 6px 6px 0"></div>
+        </div>
+        <div class="is-legend">
+          <div class="is-leg-item"><div class="is-leg-dot" style="background:var(--accent)"></div>Won — 12.4%</div>
+          <div class="is-leg-item"><div class="is-leg-dot" style="background:var(--neg);opacity:.7"></div>Lost to Rank — 77.5%</div>
+          <div class="is-leg-item"><div class="is-leg-dot" style="background:var(--warn);opacity:.7"></div>Lost to Budget — 10.1%</div>
+        </div>
+      </div>
+
+      <div class="is-context">
+        On <strong>Maximize Conversions</strong>, Google rations bids to stretch the $100/day cap — rank-lost IS at 77.5% is almost entirely budget pressure, not a competitive weakness. Two levers: <strong>increase budget above $100/day</strong>, or <strong>test Target CPA at ~$50</strong>. Also: conversions peak <strong>Tue–Thu and 3–7 PM</strong> — ad scheduling bid adjustments can improve traffic quality within the same spend.
+      </div>
+      <div class="is-context" style="margin-top:-6px;border-left:3px solid var(--pos);padding-left:14px;background:var(--pos-bg)">
+        <strong>On converting keywords, IS is 19.8% — not 12%.</strong> The 12.3% headline is dragged down by non-converting ad groups (application terms, broker terms). On the three FTB keywords driving 184 of 276 conversions, ReziLoans wins 20–22% of impressions — near Zillow (25%) and Chase (23%). The gap to close is volume, not competitive position.
+      </div>
+
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:42%">Competitor</th>
+          <th class="r">IS</th>
+          <th class="r">Overlap</th>
+          <th class="comp-bar-cell"></th>
+        </tr></thead>
+        <tbody id="comp-body"></tbody>
+      </table>
+      <div class="ovlp-note" id="comp-note"></div>
+    </div>
+  </div>
+
+  <div class="next-steps-section">
+    <div class="next-steps-hd">
+      <div class="next-steps-title">Next Steps</div>
+      <div class="next-steps-sub">Recommended actions based on Sep 10 changes + Sep 22 data</div>
+    </div>
+    <div class="next-steps-grid">
+      <div class="ns-card">
+        <div class="ns-top">
+          <span class="ns-channel google">Google</span>
+          <span class="ns-priority high">● High Priority</span>
+        </div>
+        <div class="ns-card-title">Evaluate V3 Copy Test Results (2–3 Weeks)</div>
+        <div class="ns-card-body">V3 credit-signal copy launched Sep 17 at $7/day on Facebook. Only <strong>1 lead so far</strong> — too early for statistical signal. Give it through mid-October before comparing closeable rate vs V1. On Google, removing FL already pushed closeable to <strong>35% (from 19%)</strong> — that's a meaningful signal that geo quality matters more than copy refinement right now.</div>
+      </div>
+      <div class="ns-card">
+        <div class="ns-top">
+          <span class="ns-channel google">Google</span>
+          <span class="ns-priority high">● High Priority</span>
+        </div>
+        <div class="ns-card-title">IS Gap Is Smaller Than It Looks on Converting Keywords</div>
+        <div class="ns-card-body">Overall IS is 12.3% — but that's pulled down by non-converting ad groups. On keywords that actually convert, <strong>weighted IS is 19.8%</strong>: first home buyer loans (21%), first time buyer home loan (22%), first time buyer home loans (22%). ReziLoans is near Zillow (25%) and Chase (23%) on the terms that matter. The opportunity is <strong>more volume on those same keywords</strong> — increase budget above $100/day or test Target CPA at $50–55.</div>
+      </div>
+      <div class="ns-card">
+        <div class="ns-top">
+          <span class="ns-channel facebook">Facebook</span>
+          <span class="ns-priority medium">● Medium Priority</span>
+        </div>
+        <div class="ns-card-title">Monitor Georgia + MD Expansion (30 Days)</div>
+        <div class="ns-card-body">GA added Sep 10 — <strong>6 GA leads in first 28 days</strong> with no MD leads yet. Price intent is strong (100% of FB leads targeted $200K+ homes), but credit quality remains structural at 7% closeable. Give GA/MD 30 days of data before deciding to scale.</div>
+      </div>
+      <div class="ns-card">
+        <div class="ns-top">
+          <span class="ns-channel facebook">Facebook</span>
+          <span class="ns-priority high">● High Priority</span>
+        </div>
+        <div class="ns-card-title">Add a Disqualifying Gate to the Credit Score Question</div>
+        <div class="ns-card-body">The form <strong>already asks estimated credit score</strong> — 135 of 180 leads self-reported below 620 and submitted anyway. The question is collecting data but not filtering. The fix is a <strong>disqualifying gate</strong>: if a lead selects below 620, block submission and redirect to a credit repair resource. This cleans the CRM pipeline directly — and since Housing Special Ad Category blocks audience-level targeting, the form gate is the only lever left.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tip" id="tip"><div class="tip-lbl" id="tip-lbl"></div><div class="tip-val" id="tip-val"></div></div>
+
+<script>
+const PERIODS  = ['Baseline\nFeb–Jun 7','Jun 8–29','Jun 29–\nJul 12','Jul 13–\nAug 24','Aug 25–\nSep 22'];
+const CPL      = [58.03, 46.11, 36.71, 42.08, 52.69];
+const CLOSE    = [39, 38, 19, 19, 35];
+const BADPOOR  = [43, 41, 58, 62, 52];
+const FB_CLOSE   = [13, 6, 10, 2.9, 7];
+const FB_BADPOOR = [78, 88, 70, 73.5, 62];
+const TIMELINE = [
+  { label:'≤30 days',    google:15, fb:21 },
+  { label:'2–3 months',  google:19, fb:31 },
+  { label:'3–6 months',  google:27, fb:28 },
+  { label:'6+ months',   google:37, fb:14 },
+];
+const KWS = [
+  { name:'first home buyer loans',          conv:153, cpl:46.08, is:20.9 },
+  { name:'first time buyer home loan',      conv:19,  cpl:44.61, is:21.6 },
+  { name:'mortgage pre approval est.',      conv:26,  cpl:58.97, is:12.3 },
+  { name:'pre approved mortgage',           conv:23,  cpl:60.91, is:null  },
+  { name:'getting pre-approved for mtg.',   conv:13,  cpl:47.81, is:12.7 },
+];
+const COMPETITORS = [
+  { name:'Rocket Mortgage',    is:41.19, overlap:25.01, hl:false },
+  { name:'10bestmortgage.com', is:25.30, overlap:13.62, hl:false },
+  { name:'Zillow',             is:25.06, overlap:24.66, hl:false },
+  { name:'Chase',              is:23.51, overlap:13.15, hl:false },
+  { name:'fhaloans.com',       is:23.10, overlap:33.10, hl:false },
+  { name:'Wells Fargo',        is:21.12, overlap:12.86, hl:false },
+  { name:'SoFi',               is:19.16, overlap:15.13, hl:false },
+  { name:'secure-clix.com',    is:18.47, overlap:31.98, hl:false },
+  { name:'ReziLoans',          is:12.32, overlap:null,  hl:true  },
+];
+const COUNTIES_GOOD = [
+  { name:'Dallas Co., TX',      conv:12, cpl:30.24 },
+  { name:'Montgomery Co., TX',  conv:5,  cpl:18.39 },
+  { name:'Travis Co., TX',      conv:4,  cpl:32.10 },
+  { name:'Miami-Dade Co., FL',  conv:3,  cpl:18.74 },
+  { name:'Broward Co., FL',     conv:4,  cpl:38.70 },
+];
+const COUNTIES_BAD = [
+  { name:'Harris Co., TX',   conv:2, cpl:117.82 },
+  { name:'Duval Co., FL',    conv:2, cpl:93.70  },
+  { name:'Pinellas Co., FL', conv:0, cpl:null   },
+];
+
+const cv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip = document.getElementById('tip');
+const tipLbl = document.getElementById('tip-lbl');
+const tipVal = document.getElementById('tip-val');
+function showTip(e, lbl, val) { tipLbl.textContent = lbl; tipVal.textContent = val; tip.style.display = 'block'; moveTip(e); }
+function moveTip(e) { tip.style.left = (e.clientX + 14) + 'px'; tip.style.top  = (e.clientY - 42) + 'px'; }
+function hideTip() { tip.style.display = 'none'; }
+
+function lineChart(id, series, yMin, yMax, fmtY) {
+  const svg = document.getElementById(id);
+  const W = 460, H = 190;
+  const pad = {t:14, r:16, b:52, l:40};
+  const cw = W - pad.l - pad.r, ch = H - pad.t - pad.b;
+  const n = PERIODS.length;
+  const xOf = i => pad.l + (i / (n-1)) * cw;
+  const yOf = v => pad.t + ch - ((v - yMin) / (yMax - yMin)) * ch;
+  const bc = cv('--border'), t2 = cv('--t2'), t3 = cv('--t3'), surf = cv('--surface'), posC = cv('--pos'), acC = cv('--accent');
+  let h = '';
+  const x4 = xOf(4), x3 = xOf(3);
+  h += `<rect x="${(x3+x4)/2}" y="${pad.t}" width="${x4-(x3+x4)/2+pad.r}" height="${ch}" fill="${acC}" opacity="0.04" rx="4"/>`;
+  for (let i = 0; i <= 4; i++) {
+    const v = yMin + (yMax - yMin) * (i / 4);
+    const y = yOf(v);
+    h += `<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="${bc}" stroke-width="0.7" stroke-dasharray="3 3"/>`;
+    h += `<text x="${pad.l-5}" y="${y}" text-anchor="end" dominant-baseline="middle" font-size="9" fill="${t3}" font-family="JetBrains Mono,monospace">${fmtY(v)}</text>`;
+  }
+  series.forEach(({ data, color, fill, id: sid }) => {
+    const pts = data.map((v, i) => [xOf(i), yOf(v)]);
+    const pStr = pts.map(p => p.join(',')).join(' ');
+    if (fill) {
+      const gid = 'g_' + sid;
+      const bottom = pad.t + ch;
+      const aPath = `M ${pts.map(p=>p.join(' ')).join(' L ')} L ${pts[pts.length-1][0]} ${bottom} L ${pts[0][0]} ${bottom} Z`;
+      h += `<defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity=".15"/><stop offset="100%" stop-color="${color}" stop-opacity=".01"/></linearGradient></defs>`;
+      h += `<path d="${aPath}" fill="url(#${gid})" stroke="none"/>`;
+    }
+    h += `<polyline points="${pStr}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach(([x, y], i) => {
+      const plbl = PERIODS[i].replace('\n',' ');
+      const pvl  = fmtY(data[i]);
+      const r = i === 4 ? 5.5 : 4, sw = i === 4 ? 2.5 : 2;
+      h += `<circle cx="${x}" cy="${y}" r="${r}" fill="${surf}" stroke="${color}" stroke-width="${sw}"/>`;
+      h += `<circle cx="${x}" cy="${y}" r="14" fill="transparent" class="hd" data-l="${plbl}" data-v="${pvl}" style="cursor:default"/>`;
+    });
+  });
+  PERIODS.forEach((lbl, i) => {
+    const x = xOf(i);
+    const isCurrent = i === 4;
+    const color = isCurrent ? acC : t2;
+    const weight = isCurrent ? '600' : '400';
+    lbl.split('\n').forEach((line, li) => {
+      h += `<text x="${x}" y="${H-pad.b+14+li*12}" text-anchor="middle" font-size="9.5" fill="${color}" font-weight="${weight}" font-family="Outfit,sans-serif">${line}</text>`;
+    });
+  });
+  svg.innerHTML = h;
+  svg.querySelectorAll('.hd').forEach(el => {
+    el.addEventListener('mouseenter', e => showTip(e, el.dataset.l, el.dataset.v));
+    el.addEventListener('mousemove',  moveTip);
+    el.addEventListener('mouseleave', hideTip);
+  });
+}
+
+function renderKW() {
+  const body = document.getElementById('kw-body');
+  const posC = cv('--pos'), negC = cv('--neg'), t2C = cv('--t2');
+  body.innerHTML = KWS.map(k => {
+    const cplColor = k.cpl < 50 ? posC : k.cpl > 57 ? negC : t2C;
+    const isPct  = k.is === null ? '<10%' : k.is.toFixed(0) + '%';
+    const isW    = k.is === null ? 8 : k.is;
+    const isBarW = Math.round((isW / 50) * 100);
+    return `<tr>
+      <td class="kw-name" title="${k.name}">${k.name}</td>
+      <td class="kw-conv">${k.conv}</td>
+      <td class="kw-cpl" style="color:${cplColor}">$${k.cpl.toFixed(0)}</td>
+      <td class="kw-is-cell"><div class="kw-is-row"><div class="kw-is-track"><div class="kw-is-fill" style="width:${isBarW}%"></div></div><span class="kw-is-label">${isPct}</span></div></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderCompetitors() {
+  const body = document.getElementById('comp-body');
+  const note = document.getElementById('comp-note');
+  const acC = cv('--accent'), t2C = cv('--t2'), negC = cv('--neg');
+  body.innerHTML = COMPETITORS.map(c => {
+    const isW = Math.round((c.is / 50) * 100);
+    const fillC = c.hl ? acC : t2C;
+    const ovlp = c.overlap === null ? '—' : c.overlap.toFixed(1) + '%';
+    const ovlpC = c.overlap !== null && c.overlap > 28 ? negC : t2C;
+    return `<tr>
+      <td class="comp-name${c.hl?' hl':''}" style="width:42%">${c.name}</td>
+      <td class="comp-is${c.hl?' hl':''}">${c.is.toFixed(1)}%</td>
+      <td class="comp-ovlp" style="color:${ovlpC}">${ovlp}</td>
+      <td class="comp-bar-cell"><div class="comp-bar-track"><div class="comp-bar-fill" style="width:${isW}%;background:${fillC}"></div></div></td>
+    </tr>`;
+  }).join('');
+  note.textContent = "Overlap = share of ReziLoans auctions where competitor also appeared. secure-clix.com outranks ReziLoans 74% of the time it shows up — it's a lead-gen affiliate, not a lender.";
+}
+
+function renderCounties() {
+  const body = document.getElementById('county-body');
+  const posC = cv('--pos'), negC = cv('--neg'), t2C = cv('--t2');
+  const goodRows = COUNTIES_GOOD.map(c => {
+    const isFL = c.name.includes(', FL');
+    const nameColor = isFL ? t2C : posC, cplColor = isFL ? t2C : posC;
+    return `<tr><td class="county-name" style="color:${nameColor}">${c.name}${isFL?' (removed)':''}</td><td class="county-conv">${c.conv}</td><td class="county-cpl" style="color:${cplColor}">$${c.cpl.toFixed(0)}</td></tr>`;
+  }).join('');
+  const badRows = COUNTIES_BAD.map(c => {
+    const cplStr = c.cpl === null ? 'no conv' : '$' + c.cpl.toFixed(0);
+    const isFL = c.name.includes(', FL');
+    return `<tr><td class="county-name" style="color:${isFL ? t2C : negC}">${c.name}${isFL?' (removed)':''}</td><td class="county-conv">${c.conv}</td><td class="county-cpl" style="color:${isFL ? t2C : negC}">${cplStr}</td></tr>`;
+  }).join('');
+  body.innerHTML = `<tr><td colspan="3" class="section-label">Strong Performers (TX/CA active)</td></tr>` + goodRows +
+    `<tr><td colspan="3" class="section-label" style="padding-top:12px">Budget Drains (historical)</td></tr>` + badRows;
+}
+
+function renderTimeline() {
+  const wrap = document.getElementById('timeline-wrap');
+  const acC = cv('--accent'), t2C = cv('--t2'), t3C = cv('--t3');
+  let h = `<div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:10.5px;color:${t3C};font-weight:600;letter-spacing:.05em;text-transform:uppercase">Timeline · Aug 25–Sep 22</span>
+    <div style="display:flex;gap:10px">
+      <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:${t2C}"><span style="width:8px;height:8px;border-radius:2px;background:${acC};display:inline-block"></span>Google</span>
+      <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:${t2C}"><span style="width:8px;height:8px;border-radius:2px;background:${t2C};display:inline-block;opacity:.5"></span>Facebook</span>
+    </div>
+  </div>`;
+  TIMELINE.forEach(t => {
+    h += `<div class="timeline-lbl-row"><span class="tl-title">${t.label}</span><span class="tl-val">G ${t.google}% · FB ${t.fb}%</span></div>
+    <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:5px">
+      <div class="tl-bar-bg" style="margin-bottom:2px"><div class="tl-bar-fill" style="width:${t.google}%;background:${acC}"></div></div>
+      <div class="tl-bar-bg"><div class="tl-bar-fill" style="width:${t.fb}%;background:${t2C};opacity:.6"></div></div>
+    </div>`;
+  });
+  wrap.innerHTML = h;
+}
+
+function render() {
+  lineChart('cpl-svg', [{ data: CPL, color: cv('--accent'), fill: true, id: 'cpl' }], 28, 64, v => '$' + Math.round(v));
+  lineChart('cred-svg', [{ data: CLOSE, color: cv('--pos'), fill: false, id: 'close' }, { data: BADPOOR, color: cv('--neg'), fill: false, id: 'bad' }], 0, 70, v => v + '%');
+  lineChart('fb-cred-svg', [{ data: FB_CLOSE, color: cv('--pos'), fill: false, id: 'fbclose' }, { data: FB_BADPOOR, color: cv('--neg'), fill: false, id: 'fbbad' }], 0, 95, v => v + '%');
+  renderKW();
+  renderCompetitors();
+  renderCounties();
+  renderTimeline();
+}
+
+new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', render) : render();
+</script>

@@ -1,0 +1,1150 @@
+<title>United Purpose Lending: Ads Performance Check-In</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap">
+
+<style>
+#pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #09175C;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+#pw-gate.hidden { display: none; }
+.pw-box {
+  background: #0F1E4A; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 360px;
+  display: flex; flex-direction: column; gap: 20px; text-align: center;
+}
+.pw-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7B9BDF; }
+.pw-title { font-size: 22px; font-weight: 800; color: #D4DFFA; letter-spacing: -.01em; }
+.pw-sub { font-size: 13px; color: #7B93CC; }
+.pw-input {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
+  color: #D4DFFA; font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; text-align: center; letter-spacing: .05em;
+}
+.pw-input:focus { border-color: #5B78D8; }
+.pw-btn {
+  width: 100%; padding: 12px; border-radius: 8px; border: none;
+  background: #294F9D; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s;
+}
+.pw-btn:hover { background: #3560B8; }
+.pw-error { font-size: 12px; color: #F0594F; min-height: 16px; }
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div>
+      <img src="/assets/logo-white.svg" alt="rebel iQ" style="height:32px;margin-bottom:18px;opacity:.9">
+      <div class="pw-eyebrow">United Purpose Lending</div>
+      <div class="pw-title">Ads Report</div>
+    </div>
+    <div class="pw-sub">Enter your access code to view this report.</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Access code" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">View Report</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'riq_upl_auth';
+  const PASS = 'upl2026';
+  function unlock(){ document.getElementById('pw-gate').classList.add('hidden'); }
+  try { if(localStorage.getItem(KEY)==='1') unlock(); } catch(e){}
+  document.getElementById('pw-btn').addEventListener('click', function(){
+    if(document.getElementById('pw-input').value === PASS){
+      try { localStorage.setItem(KEY,'1'); } catch(e){}
+      unlock();
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code — try again.';
+    }
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('pw-btn').click();
+  });
+})();
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg:        #F1F3EE;
+    --surface:   #FFFFFF;
+    --surface-2: #F7F8F4;
+    --ink:       #16201C;
+    --ink-soft:  #45524B;
+    --muted:     #7C8A82;
+    --border:    rgba(22,32,28,0.12);
+    --border-strong: rgba(22,32,28,0.22);
+    --accent:    #235347;
+    --accent-ink: #FFFFFF;
+    --accent-wash: #E4ECE7;
+    --series-google:   #2a78d6;
+    --series-facebook: #eb6834;
+    --good:     #0ca30c;
+    --warning:  #b8790f;
+    --critical: #d03b3b;
+    --good-wash:     #E4F3E2;
+    --warning-wash:  #FBF0DD;
+    --critical-wash: #F7E2E0;
+    --shadow: 0 1px 2px rgba(22,32,28,0.06), 0 8px 24px -12px rgba(22,32,28,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --bg:        #0E1412;
+      --surface:   #171F1B;
+      --surface-2: #1C2622;
+      --ink:       #ECF1EE;
+      --ink-soft:  #C3CDC7;
+      --muted:     #8B978F;
+      --border:    rgba(236,241,238,0.10);
+      --border-strong: rgba(236,241,238,0.18);
+      --accent:    #57C9A8;
+      --accent-ink: #0E1412;
+      --accent-wash: #1B2E28;
+      --series-google:   #3987e5;
+      --series-facebook: #d95926;
+      --good:     #35C25A;
+      --warning:  #E0A542;
+      --critical: #E2695C;
+      --good-wash:     #17301D;
+      --warning-wash:  #322717;
+      --critical-wash: #331B18;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:        #0E1412;
+    --surface:   #171F1B;
+    --surface-2: #1C2622;
+    --ink:       #ECF1EE;
+    --ink-soft:  #C3CDC7;
+    --muted:     #8B978F;
+    --border:    rgba(236,241,238,0.10);
+    --border-strong: rgba(236,241,238,0.18);
+    --accent:    #57C9A8;
+    --accent-ink: #0E1412;
+    --accent-wash: #1B2E28;
+    --series-google:   #3987e5;
+    --series-facebook: #d95926;
+    --good:     #35C25A;
+    --warning:  #E0A542;
+    --critical: #E2695C;
+    --good-wash:     #17301D;
+    --warning-wash:  #322717;
+    --critical-wash: #331B18;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg:        #F1F3EE;
+    --surface:   #FFFFFF;
+    --surface-2: #F7F8F4;
+    --ink:       #16201C;
+    --ink-soft:  #45524B;
+    --muted:     #7C8A82;
+    --border:    rgba(22,32,28,0.12);
+    --border-strong: rgba(22,32,28,0.22);
+    --accent:    #235347;
+    --accent-ink: #FFFFFF;
+    --accent-wash: #E4ECE7;
+    --series-google:   #2a78d6;
+    --series-facebook: #eb6834;
+    --good:     #0ca30c;
+    --warning:  #b8790f;
+    --critical: #d03b3b;
+    --good-wash:     #E4F3E2;
+    --warning-wash:  #FBF0DD;
+    --critical-wash: #F7E2E0;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @media print {
+    .wrap { max-width: none; padding: 0 24px 24px; }
+    section, .panel, .kpi, .lo-card, .reco-compact, .methodology, .quickview, .pending-callout { break-inside: avoid; }
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  code, .mono, .num, .figure { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---------- Header ---------- */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 20px; flex-wrap: wrap;
+    padding-bottom: 20px; margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .masthead .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 11.5px;
+    font-weight: 700; color: var(--accent); margin: 0 0 6px;
+  }
+  .masthead h1 {
+    font-size: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 0;
+    text-wrap: balance;
+  }
+  .masthead .meta { color: var(--ink-soft); font-size: 13.5px; margin-top: 6px; }
+  .masthead .period {
+    text-align: right; font-size: 13px; color: var(--muted);
+  }
+  .masthead .period strong { color: var(--ink); display:block; font-size: 15px; }
+
+  /* ---------- Check-in cadence ---------- */
+  .checkin-strip {
+    display: flex; align-items: center; margin: 18px 0 22px;
+  }
+  .checkin-step {
+    display: flex; align-items: center; gap: 8px; flex: 0 0 auto;
+  }
+  .checkin-step .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--surface-2); border: 2px solid var(--border-strong);
+    flex: 0 0 auto;
+  }
+  .checkin-step.done .dot { background: var(--accent); border-color: var(--accent); }
+  .checkin-step.current .dot { background: var(--accent); border-color: var(--accent); }
+  .checkin-step .step-label {
+    font-size: 12px; color: var(--muted); line-height: 1.3; white-space: nowrap;
+  }
+  .checkin-step .step-label small { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .checkin-step.current .step-label { color: var(--ink); font-weight: 700; }
+  .checkin-line { flex: 1 1 32px; max-width: 60px; height: 1px; background: var(--border-strong); margin: 0 10px; }
+
+  /* ---------- Quick View ---------- */
+  .quickview {
+    background: var(--accent-wash); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+  }
+  .quickview-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 800;
+    color: var(--accent); margin: 0 0 8px;
+  }
+  .quickview ul { margin: 0; padding: 0 0 0 18px; }
+  .quickview li { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 5px; line-height: 1.45; }
+  .quickview li:last-child { margin-bottom: 0; }
+  .quickview li b { color: var(--ink); }
+
+  /* ---------- Sections ---------- */
+  section { margin-bottom: 40px; }
+  .section-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.005em; }
+  .section-head .tag {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700;
+    color: var(--accent); background: var(--accent-wash); padding: 3px 8px; border-radius: 4px;
+  }
+  .section-sub { color: var(--ink-soft); font-size: 13.5px; margin: -6px 0 16px; max-width: 720px; }
+
+  /* ---------- KPI strip ---------- */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .kpi .label { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+  .kpi .value { font-size: 30px; font-weight: 800; margin-top: 6px; letter-spacing: -0.01em; }
+  .kpi .sub { font-size: 12.5px; color: var(--ink-soft); margin-top: 4px; }
+  .kpi .sub b { color: var(--ink); }
+
+  /* ---------- Cards / panels ---------- */
+  .panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  .grid-2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } .kpi-row { grid-template-columns: repeat(2,1fr); } }
+
+  /* ---------- LO scorecards ---------- */
+  .lo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .lo-grid { grid-template-columns: repeat(2, 1fr); } }
+  .lo-footnote { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+
+  /* ---------- Methodology callout ---------- */
+  .methodology {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; margin-top: 14px;
+  }
+  .methodology-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800;
+    color: var(--ink-soft); margin: 0 0 8px;
+  }
+  .methodology p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 8px; }
+  .methodology p:last-child { margin-bottom: 0; }
+  .methodology em { color: var(--ink); font-style: italic; }
+
+  /* ---------- Pending-update callout ---------- */
+  .pending-callout {
+    font-size: 13px; color: var(--ink-soft); background: var(--accent-wash);
+    border: 1px dashed var(--accent); border-radius: 8px; padding: 10px 14px;
+    margin: -6px 0 16px; line-height: 1.5;
+  }
+  .pending-callout b { color: var(--accent); }
+  .lo-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 15px; box-shadow: var(--shadow); position: relative;
+  }
+  .lo-card .name { font-weight: 700; font-size: 14px; margin: 0 0 2px; }
+  .lo-card .count { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .lo-bar-track { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 8px; }
+  .lo-bar-fill { height: 100%; border-radius: 3px; }
+  .lo-card .rate { font-size: 22px; font-weight: 800; font-family: ui-monospace, monospace; }
+  .status-chip {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 7px; border-radius: 5px;
+    margin-top: 8px;
+  }
+  .status-chip .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-good     { background: var(--good-wash);     color: var(--good); }
+  .status-warning  { background: var(--warning-wash);  color: var(--warning); }
+  .status-critical { background: var(--critical-wash); color: var(--critical); }
+  .status-good .dot     { background: var(--good); }
+  .status-warning .dot  { background: var(--warning); }
+  .status-critical .dot { background: var(--critical); }
+  .lo-trend { font-size: 11px; color: var(--muted); margin: 4px 0 0; }
+  .lo-split { display:flex; gap: 10px; margin-top: 6px; font-size: 11px; color: var(--muted); }
+  .lo-split span b { color: var(--ink-soft); font-family: ui-monospace, monospace; }
+
+  /* ---------- Legend ---------- */
+  .legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 10px; }
+  .legend .item { display: flex; align-items: center; gap: 6px; }
+  .legend .swatch { width: 10px; height: 10px; border-radius: 2px; }
+
+  /* ---------- Chart shared ---------- */
+  svg text { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .axis-label { fill: var(--muted); font-size: 10px; }
+  .gridline { stroke: var(--border); stroke-width: 1; }
+  .baseline { stroke: var(--border-strong); stroke-width: 1; }
+  .bar-label { fill: var(--ink-soft); font-size: 10.5px; }
+  .bar-value { fill: var(--ink); font-size: 11px; font-weight: 600; }
+  .hover-target:hover { filter: brightness(0.93); cursor: pointer; }
+  :root[data-theme="dark"] .hover-target:hover,
+  @media (prefers-color-scheme: dark) { .hover-target:hover { filter: brightness(1.18); } }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--ink); color: var(--bg);
+    font-size: 11.5px; padding: 6px 9px; border-radius: 6px; transform: translate(-50%, -130%);
+    white-space: nowrap; opacity: 0; transition: opacity 0.08s; z-index: 5;
+    font-family: ui-monospace, monospace;
+  }
+  .tooltip.show { opacity: 1; }
+  .chart-holder { position: relative; }
+
+  /* ---------- Tables ---------- */
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 700; }
+  td.num, th.num { text-align: right; font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  tr.zero td { color: var(--muted); }
+  .pill-best { background: var(--good-wash); color: var(--good); padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+
+  /* ---------- Recommendations (compact) ---------- */
+  .reco-group-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800;
+    color: var(--muted); margin: 0 0 8px;
+  }
+  .reco-compact {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .reco-row {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 14px; border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .reco-row:last-child { border-bottom: none; }
+  .reco-tag {
+    flex: 0 0 62px; font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.03em; padding: 2px 0; border-radius: 4px; text-align: center;
+  }
+  .reco-tag.critical { background: var(--critical-wash); color: var(--critical); }
+  .reco-tag.warning  { background: var(--warning-wash);  color: var(--warning); }
+  .reco-tag.good     { background: var(--good-wash);     color: var(--good); }
+  .reco-tag.info     { background: var(--accent-wash);   color: var(--accent); }
+  .reco-text { color: var(--ink-soft); line-height: 1.4; }
+  .reco-text b { color: var(--ink); }
+
+  footer {
+    margin-top: 50px; padding-top: 18px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <div>
+      <picture style="display:block;margin-bottom:12px">
+        <source srcset="/assets/logo-white.svg" media="(prefers-color-scheme:dark)">
+        <img src="/assets/logo-color.svg" alt="rebel iQ" style="height:20px;display:block">
+      </picture>
+      <p class="eyebrow">United Purpose Lending &middot; Ads Performance</p>
+      <h1>Ads Performance Check-In</h1>
+      <p class="meta">Prepared by Nick Misewicz, VP Client Success &middot; rebel iQ</p>
+    </div>
+    <div class="period">
+      <strong>Sep 29, 2026</strong>
+      Data through Sep 29
+    </div>
+  </div>
+
+  <!-- CHECK-IN CADENCE -->
+  <div class="checkin-strip">
+    <div class="checkin-step done">
+      <span class="dot"></span>
+      <div class="step-label">Aug 6<br><small>Done</small></div>
+    </div>
+    <div class="checkin-line"></div>
+    <div class="checkin-step done">
+      <span class="dot"></span>
+      <div class="step-label">Aug 20<br><small>Done</small></div>
+    </div>
+    <div class="checkin-line"></div>
+    <div class="checkin-step current">
+      <span class="dot"></span>
+      <div class="step-label">Sep 29<br><small>This check-in</small></div>
+    </div>
+    <div class="checkin-line"></div>
+    <div class="checkin-step">
+      <span class="dot"></span>
+      <div class="step-label">TBD<br><small>Next check-in</small></div>
+    </div>
+  </div>
+
+  <!-- QUICK VIEW -->
+  <div class="quickview">
+    <p class="quickview-label">Quick View: My Read Going Into This Check-In</p>
+    <ul>
+      <li>Facebook's ad sets flipped, and it's not just a one-period blip. V2 was the stronger performer at both prior check-ins; V1 leads this period (17 leads at $25.13 CPL vs. V2's 11 at $40.76), and the updated cumulative report confirms V1 has pulled ahead on the full campaign too ($29.17 vs. $32.11). rebel iQ's own Sep 23 review independently flagged V2 softening.</li>
+      <li>Now that Facebook and Google cover the same window, Facebook wins on both raw CPL ($30.58 vs. $50.32) and cost per real opportunity ($509.72 vs. $603.87). Google's opportunity rate is slightly higher (7.9% vs. 6.0%), but not enough to close the cost gap.</li>
+      <li>Facebook's credit quality kept softening: closeable 660+ credit down to 19%, from 26% at Aug 20, from 27% at Aug 6. Three check-ins in a row moving the same direction. Google's holding roughly steady.</li>
+      <li>Still no buyer personas from Aaron. It's been almost two months since I first flagged this on 8/6, so I'm nudging harder this time.</li>
+    </ul>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <section>
+    <div class="section-head">
+      <h2>Recommendations</h2>
+    </div>
+    <p class="section-sub">My own team's notes and considerations following this check-in.</p>
+
+    <div class="reco-compact">
+      <div class="reco-row">
+        <span class="reco-tag info">Prep</span>
+        <span class="reco-text"><b>Consider a creative refresh for V2.</b> Flagged independently by the ads team's Sep 23 review ("V2 isn't performing that well").</span>
+      </div>
+      <div class="reco-row">
+        <span class="reco-tag info">Watch</span>
+        <span class="reco-text"><b>Facebook's continued credit-quality softening.</b> Closeable 660+ credit has dropped every check-in (27% to 26% to 19%). Not urgent yet, but a 3rd straight decline is a real trend.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI STRIP -->
+  <section>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="label">Facebook CPL (Jun 1-Sep 29)</div>
+        <div class="value" style="color:var(--series-facebook)">$30.58</div>
+        <div class="sub">100 leads / <b>$3,058.33</b> spend, cumulative</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Google CPL (Jun 1-Sep 29)</div>
+        <div class="value" style="color:var(--series-google)">$50.32</div>
+        <div class="sub">60 conversions / <b>$3,019.35</b> spend, cumulative</div>
+      </div>
+      <div class="kpi">
+        <div class="label">CRM Contact Rate</div>
+        <div class="value">17%</div>
+        <div class="sub"><b>29</b> of 170 leads actually talked to, up from 4%</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Total Opportunities</div>
+        <div class="value" style="color:var(--good)">~11</div>
+        <div class="sub">up from ~4 at Aug 20, mostly William Wood</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTLENECK -->
+  <section>
+    <div class="section-head">
+      <h2>Follow-Up: What the Data Shows</h2>
+      <span class="tag">Only William Wood is really talking to leads</span>
+    </div>
+    <p class="section-sub">Contact rate here means the share of assigned leads a rep has actually talked to (Made Contact or further), not just attempted, a stricter bar than prior check-ins used. William Wood is the only rep with a meaningful number. Cedric and Tyler, who looked strong under the old "attempted" definition, are thin once you require an actual conversation.</p>
+
+    <div class="lo-grid" id="lo-grid"></div>
+    <p class="lo-footnote">* Aaron's assigned leads are routed to Mariah, Tyler, and Chris to work per team process, so his 0% likely reflects reassignment, not inaction (confirmed on the 8/6 call). That explanation doesn't cover Chris, LaMarcus, Mariah, or Michael.</p>
+
+    <div class="panel" style="margin-top:16px;">
+      <p style="font-size:15px; font-weight:800; margin:0 0 4px;">Leads by Stage</p>
+      <p class="section-sub" style="margin:0 0 14px;">What "contacted" is made of. Consultation Scheduled and Nurturing both show real activity for the first time this check-in, mostly from William Wood.</p>
+      <div class="grid-2">
+        <div class="chart-holder">
+          <svg id="stage-chart" viewBox="0 0 460 200" width="100%"></svg>
+          <div class="tooltip" id="stage-tooltip"></div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Stage</th><th class="num">Facebook</th><th class="num">Google</th><th class="num">Unk.</th><th class="num">Total</th></tr></thead>
+            <tbody id="stage-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="methodology">
+      <p class="methodology-label">How "contact rate" is calculated, and where it might be off</p>
+      <p>This number comes entirely from Surefire's Lifecycle Status field (New &rarr; Attempted Contact &rarr; Made Contact &rarr; Consultation Scheduled &rarr; Application Sent &rarr; Application Started &rarr; Nurturing), as pulled into Ethan's biweekly export. As of this check-in, "contact rate" means Made Contact or further, an actual conversation, not just Attempted Contact. That's a stricter bar than prior check-ins used, and I recomputed the Aug 20 baseline under this same definition for a fair comparison.</p>
+      <p>I don't have a confirmed update on the Surefire "Failed to Contact" status and attempt-count tracking discussed on the 8/6 call, so a 0% could still mean "talked to them but didn't log the stage change" rather than "never reached." That caveat matters more now than it did under the looser "attempted" definition, since a missed status update has a bigger effect on the number.</p>
+    </div>
+  </section>
+
+  <!-- VOLUME + KEYWORDS -->
+  <section>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="section-head" style="margin-bottom:4px;">
+          <h2 style="font-size:15px;">Weekly Lead Volume</h2>
+        </div>
+        <p class="section-sub" style="margin-bottom:10px;">Real leads only. 1 FB test + 6 Google test/internal submissions removed. Sep 28 week is partial.</p>
+        <div class="legend">
+          <div class="item"><span class="swatch" style="background:var(--series-facebook)"></span>Facebook</div>
+          <div class="item"><span class="swatch" style="background:var(--series-google)"></span>Google</div>
+        </div>
+        <div class="chart-holder">
+          <svg id="volume-chart" viewBox="0 0 520 220" width="100%"></svg>
+          <div class="tooltip" id="volume-tooltip"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="section-head" style="margin-bottom:4px;">
+          <h2 style="font-size:15px;">Conversions by Day of Week</h2>
+        </div>
+        <p class="section-sub" style="margin-bottom:10px;">Google Ads platform data, n=60. Wednesday overtook Sunday as the top day this pull.</p>
+        <div class="chart-holder">
+          <svg id="day-chart" viewBox="0 0 460 220" width="100%"></svg>
+          <div class="tooltip" id="day-tooltip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD QUALITY -->
+  <section>
+    <div class="section-head">
+      <h2>Lead Quality: Facebook vs. Google</h2>
+      <span class="tag">Stable, no red flags</span>
+    </div>
+    <p class="section-sub">From lead-form answers (Sep 29 pull, n=121 Facebook / n=63 Google). Facebook's closeable-credit rate has dropped three check-ins running.</p>
+    <div class="panel">
+      <div class="legend">
+        <div class="item"><span class="swatch" style="background:var(--series-facebook)"></span>Facebook</div>
+        <div class="item"><span class="swatch" style="background:var(--series-google)"></span>Google</div>
+      </div>
+      <div class="chart-holder">
+        <svg id="quality-chart" viewBox="0 0 760 240" width="100%"></svg>
+        <div class="tooltip" id="quality-tooltip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACEBOOK AD SET -->
+  <section>
+    <div class="section-head">
+      <h2>Facebook Ad Set Performance</h2>
+      <span class="tag">V1 leads, cumulative and this period</span>
+    </div>
+    <p class="section-sub">Campaign "Howard Hanna RES 2.0" &middot; Pixel Lead Generation &middot; cumulative Jun 1&ndash;Sep 29, same window as Google below. V2 won cumulatively at both Aug 6 and Aug 20; V1 has now pulled ahead on the full campaign too. Frequency 2.52&ndash;2.74, healthy and not fatigued.</p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="chart-holder">
+          <svg id="adset-chart" viewBox="0 0 480 190" width="100%"></svg>
+          <div class="tooltip" id="adset-tooltip"></div>
+        </div>
+        <div class="table-scroll" style="margin-top:14px;">
+          <table>
+            <thead><tr><th>Ad set (cumulative)</th><th class="num">Leads</th><th class="num">Spend</th><th class="num">CPL</th></tr></thead>
+            <tbody>
+              <tr><td>Purchase General &ndash; V1</td><td class="num">52</td><td class="num">$1,516.91</td><td class="num"><span class="pill-best">$29.17</span></td></tr>
+              <tr><td>Purchase General &ndash; V2</td><td class="num">48</td><td class="num">$1,541.42</td><td class="num">$32.11</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:12.5px; color:var(--ink-soft); margin-top:10px;">rebel iQ's own Sep 23 Meta review independently flagged V2 softening and suggested a creative refresh; the Sep 29 report recommends prioritizing V1.</p>
+      </div>
+
+      <div class="panel">
+        <p style="font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:700; margin:0 0 10px;">Cost Per Opportunity, Cumulative</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Ad set</th><th class="num">Opp.</th><th class="num">Spend</th><th class="num">Cost/Opp.</th></tr></thead>
+            <tbody>
+              <tr><td>Purchase General &ndash; V1</td><td class="num"><span class="pill-best">4</span></td><td class="num">$1,516.91</td><td class="num"><span class="pill-best">$379.23</span></td></tr>
+              <tr><td>Purchase General &ndash; V2</td><td class="num">2</td><td class="num">$1,541.42</td><td class="num">$770.71</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:12.5px; color:var(--ink-soft); margin-top:14px;">Now computable: Facebook's ad set report finally covers the same Jun 1&ndash;Sep 29 window as everything else. V1 wins on cost per opportunity by a wide margin, same story as raw CPL. Leads here use the ad platform's own count; the CRM join (Opportunity Tracking section below) shows slightly more rows per ad set, normal sync lag between platform and export.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST EFFICIENCY -->
+  <section>
+    <div class="section-head">
+      <h2>Google vs. Facebook: Cost Efficiency</h2>
+      <span class="tag">Jun 1&ndash;Sep 29, both channels comparable</span>
+    </div>
+    <p class="section-sub">Facebook and Google finally cover the same window this cycle, so this comparison is back on solid ground. Facebook wins on both raw CPL and cost per real opportunity.</p>
+    <div class="panel">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Metric</th><th class="num">Facebook</th><th class="num">Google</th></tr></thead>
+          <tbody>
+            <tr><td>Spend</td><td class="num">$3,058.33</td><td class="num">$3,019.35</td></tr>
+            <tr><td>Leads / Conversions</td><td class="num">100</td><td class="num">60</td></tr>
+            <tr><td><b>CPL</b></td><td class="num"><span class="pill-best">$30.58</span></td><td class="num">$50.32</td></tr>
+            <tr><td>Opportunities (Made Contact, Consultation Scheduled, Application Sent/Started)</td><td class="num">6</td><td class="num">5</td></tr>
+            <tr><td><b>Cost / Opportunity</b></td><td class="num"><span class="pill-best">$509.72</span></td><td class="num">$603.87</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-top:14px;">Google's leads convert to a real opportunity at a slightly higher rate (7.9% vs. Facebook's 6.0%), but Facebook's overall cost advantage is large enough to win on both measures anyway.</p>
+    </div>
+  </section>
+
+  <!-- KEYWORD PERFORMANCE -->
+  <section>
+    <div class="section-head">
+      <h2>Google Keyword &amp; Ad Group Performance</h2>
+      <span class="tag">Platform data</span>
+    </div>
+    <p class="section-sub">Campaign "rebel iQ: Purchase (General) - PA" &middot; Maximize Conversions &middot; Jun 1&ndash;Sep 29. Cost-per-lead by active keyword (16 of 90 keywords have any spend).</p>
+    <p class="pending-callout"><b>rebel iQ's own Sep 1 review</b> (a separate snapshot, Jul 30&ndash;Aug 31) showed cost/conversion at <b>$37.60</b>, a $29.69 improvement over the prior period, conversion rate up 7.31 points, CPC down $1.32. A meaningfully better recent trend than the Jun 1&ndash;Sep 29 blended $50.32 below suggests.</p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="chart-holder">
+          <svg id="keyword-chart" viewBox="0 0 520 260" width="100%"></svg>
+          <div class="tooltip" id="keyword-tooltip"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Ad group</th><th class="num">Conv.</th><th class="num">Cost</th><th class="num">CPL</th></tr></thead>
+            <tbody id="adgroup-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUCTION INSIGHTS -->
+  <section>
+    <div class="section-head">
+      <h2>Competitive Position: Auction Insights</h2>
+      <span class="tag">Platform data</span>
+    </div>
+    <p class="section-sub">Jun 1&ndash;Sep 29. Same two measures: how often the ad shows (impression share) vs. how well it shows when it does (top-of-page rate).</p>
+
+    <div class="panel" style="margin-bottom:14px;">
+      <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:700; margin:0 0 8px;">Impression Share</p>
+      <div class="chart-holder">
+        <svg id="auction-chart" viewBox="0 0 900 240" width="100%"></svg>
+        <div class="tooltip" id="auction-tooltip"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:700; margin:0 0 8px;">Top of Page Rate</p>
+      <div class="chart-holder">
+        <svg id="topofpage-chart" viewBox="0 0 900 240" width="100%"></svg>
+        <div class="tooltip" id="topofpage-tooltip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITY TRACKING -->
+  <section>
+    <div class="section-head">
+      <h2>Tracking Opportunities: Matching Ad Performance to CRM Stages</h2>
+      <span class="tag">New this check-in</span>
+    </div>
+    <p class="section-sub">Same method as Aug 20: join CRM contact emails against the lead exports. Match rates this pull: 120 of 121 Facebook leads (99%), 59 of 63 Google leads (94%). "Opportunity" means Made Contact, Consultation Scheduled, Application Sent, or Application Started. Nurturing is not counted, it's a holding status, not an immediate opportunity.</p>
+    <p class="pending-callout"><b>Total opportunities:</b> roughly 11 now, up from about 4 at Aug 20. William Wood accounts for most of the increase.</p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <p style="font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:700; margin:0 0 10px;">Google, by Keyword</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Keyword</th><th class="num">Leads</th><th class="num">Opp.</th><th class="num">Cost/Opp.</th></tr></thead>
+            <tbody id="opp-google-table"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <p style="font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:700; margin:0 0 10px;">Facebook, by Ad Set</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Ad set</th><th class="num">Leads</th><th class="num">Opp.</th><th class="num">Cost/Opp.</th></tr></thead>
+            <tbody id="opp-facebook-table"></tbody>
+          </table>
+        </div>
+        <p style="font-size:12.5px; color:var(--ink-soft); margin-top:14px;">Cost per opportunity is now computable since Facebook's ad set report covers the same Jun 1&ndash;Sep 29 window as everything else. Full comparison against Google in the Cost Efficiency section above.</p>
+      </div>
+    </div>
+
+    <div class="methodology" style="margin-top:16px;">
+      <p class="methodology-label">Two honest caveats before reading too much into this</p>
+      <p>This is confounded by which LO the lead landed with, not just lead quality. Until the follow-up gap closes for the reps still flat, any keyword or ad-set "opportunity rate" is really measuring ad quality tangled up with which rep got the lead. Don't make budget calls off this table alone yet.</p>
+      <p>The email join keeps surfacing duplicate CRM contacts, 7 this pull (same person submitting twice, sometimes assigned to two different LOs). Corrected by keeping the furthest stage across duplicates each time, same fix as Aug 20.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources: Facebook &amp; Google lead exports, Surefire CRM export, Google Ads platform reports (Search keyword, Auction Insights, Day &amp; Hour), Facebook Ads platform reports (Ad Set, Sep 1&ndash;29 and Jun 1&ndash;Sep 29 cumulative), plus rebel iQ's internal Google review (Sep 1) and Meta review (Sep 23).</span>
+    <span>Next check-in: not yet scheduled.</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var isDark = function () {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  };
+  var css = function (name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  };
+
+  // ---------------- LO SCORECARDS ----------------
+  var LOS = [
+    { name: 'William Wood', rate: 64, prev: 0, total: 36, contacted: 23, fb: [19,11], gg: [17,12] },
+    { name: 'Cedric Mims', rate: 14, prev: 18, total: 35, contacted: 5, fb: [19,2], gg: [16,3] },
+    { name: 'Tyler Coulverson', rate: 4, prev: 0, total: 23, contacted: 1, fb: [14,0], gg: [9,1] },
+    { name: 'Aaron Gibson', rate: 0, prev: 0, total: 6, contacted: 0, fb: [6,0], gg: [0,0] },
+    { name: 'Chris Grogan', rate: 0, prev: 0, total: 24, contacted: 0, fb: [16,0], gg: [7,0] },
+    { name: 'LaMarcus Thurman', rate: 0, prev: 0, total: 20, contacted: 0, fb: [17,0], gg: [3,0] },
+    { name: 'Mariah Tosadori', rate: 0, prev: 0, total: 20, contacted: 0, fb: [15,0], gg: [5,0] },
+    { name: 'Michael Minyard', rate: 0, prev: 0, total: 6, contacted: 0, fb: [3,0], gg: [2,0] }
+  ];
+  function statusFor(rate) {
+    if (rate >= 50) return { cls: 'status-good', label: 'Strong', color: 'var(--good)' };
+    if (rate > 0) return { cls: 'status-warning', label: 'Active', color: 'var(--warning)' };
+    return { cls: 'status-warning', label: 'No update yet', color: 'var(--warning)' };
+  }
+  var loGrid = document.getElementById('lo-grid');
+  LOS.forEach(function (lo) {
+    var st = statusFor(lo.rate);
+    var trend = lo.rate > lo.prev ? ('up from ' + lo.prev + '% on 8/20')
+      : (lo.rate === lo.prev ? ('flat, was ' + lo.prev + '% on 8/20') : ('down from ' + lo.prev + '% on 8/20'));
+    var card = document.createElement('div');
+    card.className = 'lo-card';
+    card.innerHTML =
+      '<p class="name">' + lo.name + '</p>' +
+      '<p class="count">' + lo.total + ' leads assigned</p>' +
+      '<div class="lo-bar-track"><div class="lo-bar-fill" style="width:' + Math.max(lo.rate, 2) + '%; background:' + st.color + '"></div></div>' +
+      '<span class="rate">' + lo.rate + '%</span>' +
+      '<div class="status-chip ' + st.cls + '"><span class="dot"></span>' + st.label + '</div>' +
+      '<p class="lo-trend">' + trend + '</p>' +
+      '<div class="lo-split">' +
+        '<span style="color:var(--series-facebook)">&#9679; FB <b>' + lo.fb[1] + '/' + lo.fb[0] + '</b></span>' +
+        '<span style="color:var(--series-google)">&#9679; G <b>' + lo.gg[1] + '/' + lo.gg[0] + '</b></span>' +
+      '</div>';
+    loGrid.appendChild(card);
+  });
+
+  // ---------------- SVG helpers ----------------
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function showTip(tipEl, holderEl, x, y, html) {
+    tipEl.innerHTML = html;
+    var rect = holderEl.getBoundingClientRect();
+    tipEl.style.left = x + 'px';
+    tipEl.style.top = y + 'px';
+    tipEl.classList.add('show');
+  }
+  function hideTip(tipEl) { tipEl.classList.remove('show'); }
+
+  // ---------------- VOLUME LINE CHART ----------------
+  (function () {
+    var weeks = ['6/22','6/29','7/6','7/13','7/20','7/27','8/3','8/10','8/17','8/24','8/31','9/7','9/14','9/21','9/28*'];
+    var fb = [4,15,10,9,6,11,6,1,11,12,11,7,9,7,2];
+    var gg = [0,5,6,0,4,6,6,5,6,7,5,4,4,2,1];
+    var svg = document.getElementById('volume-chart');
+    var W = 520, H = 220, padL = 30, padR = 12, padT = 12, padB = 28;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxV = 16;
+    var n = weeks.length;
+    function xAt(i) { return padL + (plotW * i) / (n - 1); }
+    function yAt(v) { return padT + plotH - (plotH * v) / maxV; }
+
+    // gridlines
+    [0,4,8,12,16].forEach(function (v) {
+      svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), class: 'gridline' }));
+      var t = el('text', { x: 4, y: yAt(v) + 3, class: 'axis-label' });
+      t.textContent = v; svg.appendChild(t);
+    });
+    weeks.forEach(function (w, i) {
+      if (i % 2 !== 0 && i !== n - 1) return;
+      var t = el('text', { x: xAt(i), y: H - 8, class: 'axis-label', 'text-anchor': i === 0 ? 'start' : (i === n-1 ? 'end' : 'middle') });
+      t.textContent = w; svg.appendChild(t);
+    });
+
+    function drawLine(data, color) {
+      var d = data.map(function (v, i) { return (i === 0 ? 'M' : 'L') + xAt(i) + ',' + yAt(v); }).join(' ');
+      svg.appendChild(el('path', { d: d, fill: 'none', stroke: color, 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+      data.forEach(function (v, i) {
+        var c = el('circle', { cx: xAt(i), cy: yAt(v), r: 4, fill: color, stroke: css('--surface'), 'stroke-width': 1.5, class: 'hover-target' });
+        var holder = svg.closest('.chart-holder');
+        var tip = holder.querySelector('.tooltip');
+        c.addEventListener('mouseenter', function (ev) {
+          var r = holder.getBoundingClientRect();
+          var cx = xAt(i) / W * r.width, cy = yAt(v) / H * r.height;
+          showTip(tip, holder, cx, cy, weeks[i] + ' &middot; <b>' + v + '</b> leads');
+        });
+        c.addEventListener('mouseleave', function () { hideTip(tip); });
+        svg.appendChild(c);
+      });
+    }
+    drawLine(fb, css('--series-facebook'));
+    drawLine(gg, css('--series-google'));
+  })();
+
+  // ---------------- DAY OF WEEK BAR CHART ----------------
+  (function () {
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var conv = [12,7,7,15,8,8,3];
+    var svg = document.getElementById('day-chart');
+    var W = 460, H = 220, padL = 26, padR = 10, padT = 14, padB = 24;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxV = 16;
+    var n = days.length;
+    var bw = (plotW / n) * 0.6;
+    var gap = (plotW / n) * 0.4;
+    [0,4,8,12,16].forEach(function (v) {
+      var y = padT + plotH - (plotH * v) / maxV;
+      svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: y, y2: y, class: 'gridline' }));
+      var t = el('text', { x: 4, y: y + 3, class: 'axis-label' }); t.textContent = v; svg.appendChild(t);
+    });
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    days.forEach(function (day, i) {
+      var v = conv[i];
+      var x = padL + i * (plotW / n) + gap / 2;
+      var barH = (plotH * v) / maxV;
+      var y = padT + plotH - barH;
+      var r = el('rect', { x: x, y: y, width: bw, height: Math.max(barH,1), rx: 4, fill: css('--accent'), class: 'hover-target' });
+      r.addEventListener('mouseenter', function () {
+        var rect = holder.getBoundingClientRect();
+        showTip(tip, holder, (x + bw/2)/W*rect.width, y/H*rect.height, day + ' &middot; <b>' + v + '</b> conv.');
+      });
+      r.addEventListener('mouseleave', function () { hideTip(tip); });
+      svg.appendChild(r);
+      var lbl = el('text', { x: x + bw/2, y: H - 6, class: 'axis-label', 'text-anchor': 'middle' });
+      lbl.textContent = day; svg.appendChild(lbl);
+    });
+  })();
+
+  // ---------------- LEADS BY STAGE (FUNNEL) ----------------
+  (function () {
+    var STAGES = [
+      { name: 'New', fb: 55, gg: 17, unk: 2 },
+      { name: 'Attempted Contact', fb: 41, gg: 26, unk: 0 },
+      { name: 'Made Contact', fb: 3, gg: 4, unk: 0 },
+      { name: 'Consultation Scheduled', fb: 3, gg: 1, unk: 0 },
+      { name: 'Application Sent', fb: 1, gg: 0, unk: 0 },
+      { name: 'Application Started', fb: 0, gg: 0, unk: 0 },
+      { name: 'Nurturing', fb: 6, gg: 11, unk: 0 }
+    ];
+    var OPACITY_STEPS = [1, 0.86, 0.72, 0.58, 0.46, 0.34, 0.24];
+    var svg = document.getElementById('stage-chart');
+    var W = 460, H = 200, padL = 150, padR = 34, padT = 6, padB = 6;
+    var plotW = W - padL - padR;
+    var maxV = 74;
+    var rowH = (H - padT - padB) / STAGES.length;
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    STAGES.forEach(function (s, i) {
+      var total = s.fb + s.gg + s.unk;
+      var y = padT + i * rowH + rowH * 0.2;
+      var barH = rowH * 0.6;
+      var w = Math.max((plotW * total) / maxV, total > 0 ? 3 : 0);
+      var label = el('text', { x: padL - 10, y: y + barH/2 + 4, class: 'bar-label', 'text-anchor': 'end' });
+      label.textContent = s.name; svg.appendChild(label);
+      var rect = el('rect', { x: padL, y: y, width: w, height: barH, rx: 4, fill: css('--accent'), opacity: OPACITY_STEPS[i], class: 'hover-target' });
+      rect.addEventListener('mouseenter', function () {
+        var rect2 = holder.getBoundingClientRect();
+        showTip(tip, holder, (padL + w)/W*rect2.width, y/H*rect2.height, s.name + '<br>' + total + ' leads &middot; FB ' + s.fb + ' &middot; G ' + s.gg);
+      });
+      rect.addEventListener('mouseleave', function () { hideTip(tip); });
+      svg.appendChild(rect);
+      var val = el('text', { x: padL + w + 8, y: y + barH/2 + 4, class: 'bar-value' });
+      val.textContent = total;
+      svg.appendChild(val);
+    });
+
+    var tbody = document.getElementById('stage-table');
+    STAGES.forEach(function (s) {
+      var tr = document.createElement('tr');
+      var total = s.fb + s.gg + s.unk;
+      if (total === 0) tr.className = 'zero';
+      tr.innerHTML = '<td>' + s.name + '</td><td class="num">' + s.fb + '</td><td class="num">' + s.gg + '</td><td class="num">' + s.unk + '</td><td class="num">' + total + '</td>';
+      tbody.appendChild(tr);
+    });
+  })();
+
+  // ---------------- FB AD SET CHART ----------------
+  (function () {
+    var rows = [
+      { name: 'Purchase General – V1', cpl: 29.17, leads: 52, best: true },
+      { name: 'Purchase General – V2', cpl: 32.11, leads: 48, best: false }
+    ];
+    var svg = document.getElementById('adset-chart');
+    var W = 480, H = 190, padL = 170, padR = 60, padT = 10, padB = 10;
+    var plotW = W - padL - padR;
+    var maxCPL = 36;
+    var rowH = (H - padT - padB) / rows.length;
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    rows.forEach(function (r, i) {
+      var y = padT + i * rowH + rowH * 0.22;
+      var barH = rowH * 0.56;
+      var w = (plotW * r.cpl) / maxCPL;
+      var label = el('text', { x: padL - 10, y: y + barH/2 + 4, class: 'bar-label', 'text-anchor': 'end' });
+      label.textContent = r.name; svg.appendChild(label);
+      var rect = el('rect', { x: padL, y: y, width: w, height: barH, rx: 4, fill: r.best ? css('--good') : css('--series-facebook'), class: 'hover-target' });
+      rect.addEventListener('mouseenter', function () {
+        var rect2 = holder.getBoundingClientRect();
+        showTip(tip, holder, (padL + w)/W*rect2.width, y/H*rect2.height, r.name + '<br>' + r.leads + ' leads &middot; <b>$' + r.cpl.toFixed(2) + '</b> CPL');
+      });
+      rect.addEventListener('mouseleave', function () { hideTip(tip); });
+      svg.appendChild(rect);
+      var val = el('text', { x: padL + w + 8, y: y + barH/2 + 4, class: 'bar-value' });
+      val.textContent = '$' + r.cpl.toFixed(2);
+      svg.appendChild(val);
+    });
+  })();
+
+
+  // ---------------- KEYWORD CPL CHART ----------------
+  (function () {
+    var rows = [
+      { kw: 'first home buyer loans', conv: 42, cost: 1706.38, cpl: 40.63 },
+      { kw: 'first time home buyer loan', conv: 3, cost: 156.97, cpl: 52.32 },
+      { kw: 'how to get pre approved for a mortgage', conv: 2, cost: 119.06, cpl: 59.53 },
+      { kw: 'mortgage pre approval estimate', conv: 4, cost: 255.64, cpl: 63.91 },
+      { kw: 'first time home buyer home loan', conv: 4, cost: 286.36, cpl: 71.59 },
+      { kw: 'pre approved mortgage', conv: 3, cost: 277.31, cpl: 92.44 }
+    ];
+    var svg = document.getElementById('keyword-chart');
+    var W = 520, H = 260, padL = 210, padR = 60, padT = 10, padB = 10;
+    var plotW = W - padL - padR;
+    var maxCPL = 100;
+    var rowH = (H - padT - padB) / rows.length;
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    var best = Math.min.apply(null, rows.map(function(r){return r.cpl;}));
+    rows.forEach(function (r, i) {
+      var y = padT + i * rowH + rowH * 0.22;
+      var barH = rowH * 0.56;
+      var w = (plotW * r.cpl) / maxCPL;
+      var label = el('text', { x: padL - 10, y: y + barH/2 + 4, class: 'bar-label', 'text-anchor': 'end' });
+      label.textContent = r.kw; svg.appendChild(label);
+      var isBest = r.cpl === best;
+      var rect = el('rect', { x: padL, y: y, width: w, height: barH, rx: 4, fill: isBest ? css('--good') : css('--accent'), class: 'hover-target' });
+      rect.addEventListener('mouseenter', function () {
+        var rect2 = holder.getBoundingClientRect();
+        showTip(tip, holder, (padL + w)/W*rect2.width, y/H*rect2.height, r.kw + '<br>' + r.conv + ' conv &middot; $' + r.cost.toFixed(2) + ' &middot; <b>$' + r.cpl.toFixed(2) + '</b> CPL');
+      });
+      rect.addEventListener('mouseleave', function () { hideTip(tip); });
+      svg.appendChild(rect);
+      var val = el('text', { x: padL + w + 8, y: y + barH/2 + 4, class: 'bar-value' });
+      val.textContent = '$' + r.cpl.toFixed(2);
+      svg.appendChild(val);
+    });
+  })();
+
+  // ---------------- AD GROUP TABLE ----------------
+  (function () {
+    var rows = [
+      ['First-Time Home Buyers', 50, 2227.95, 44.56, true],
+      ['Mortgage Pre-Approval', 10, 740.78, 74.08, false],
+      ['Home Loan Pre-Approval', 0, 42.38, null, false],
+      ['Mortgage Brokers', 0, 8.24, null, false]
+    ];
+    var tbody = document.getElementById('adgroup-table');
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      if (r[1] === 0) tr.className = 'zero';
+      var cplText = r[3] ? '$' + r[3].toFixed(2) : 'n/a';
+      if (r[4]) cplText = '<span class="pill-best">$' + r[3].toFixed(2) + '</span>';
+      tr.innerHTML = '<td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">$' + r[2].toFixed(2) + '</td><td class="num">' + cplText + '</td>';
+      tbody.appendChild(tr);
+    });
+  })();
+
+  // ---------------- LEAD QUALITY GROUPED CHART ----------------
+  (function () {
+    var metrics = [
+      { label: '$200K+ price', fb: 54, gg: 54 },
+      { label: 'Closeable credit (660+)', fb: 19, gg: 35 },
+      { label: 'Bad/Poor credit (<620)', fb: 64, gg: 49 },
+      { label: 'No time frame', fb: 17, gg: 38 }
+    ];
+    var svg = document.getElementById('quality-chart');
+    var W = 760, H = 240, padL = 34, padR = 10, padT = 14, padB = 46;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxV = 70;
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    [0,20,40,60].forEach(function (v) {
+      var y = padT + plotH - (plotH*v)/maxV;
+      svg.appendChild(el('line', { x1: padL, x2: W-padR, y1: y, y2: y, class: 'gridline' }));
+      var t = el('text', { x: 2, y: y+3, class: 'axis-label' }); t.textContent = v+'%'; svg.appendChild(t);
+    });
+    var groupW = plotW / metrics.length;
+    var barW = groupW * 0.28;
+    metrics.forEach(function (m, gi) {
+      var gx = padL + gi * groupW + groupW * 0.18;
+      [['fb', m.fb, css('--series-facebook'), 'Facebook'], ['gg', m.gg, css('--series-google'), 'Google']].forEach(function (pair, pi) {
+        var v = pair[1], color = pair[2], seriesLabel = pair[3];
+        var x = gx + pi * (barW + 8);
+        var barH = (plotH * v) / maxV;
+        var y = padT + plotH - barH;
+        var rect = el('rect', { x: x, y: y, width: barW, height: Math.max(barH,2), rx: 4, fill: color, class: 'hover-target' });
+        rect.addEventListener('mouseenter', function () {
+          var rect2 = holder.getBoundingClientRect();
+          showTip(tip, holder, (x+barW/2)/W*rect2.width, y/H*rect2.height, seriesLabel + ' &middot; ' + m.label + '<br><b>' + v + '%</b>');
+        });
+        rect.addEventListener('mouseleave', function () { hideTip(tip); });
+        svg.appendChild(rect);
+        var val = el('text', { x: x+barW/2, y: y-6, class: 'bar-value', 'text-anchor': 'middle', style: 'font-size:10px' });
+        val.textContent = v+'%'; svg.appendChild(val);
+      });
+      var glabel = el('text', { x: gx + barW + 4, y: H-30, class: 'axis-label', 'text-anchor': 'middle' });
+      glabel.textContent = m.label; svg.appendChild(glabel);
+    });
+  })();
+
+  // ---------------- AUCTION INSIGHTS: SHARED DATA ----------------
+  var AUCTION_ROWS = [
+    { name: 'Rocket Mortgage', is: 38.02, top: 84.18, you: false },
+    { name: 'fhaloans.com', is: 36.16, top: 83.40, you: false },
+    { name: 'Zillow', is: 30.85, top: 85.77, you: false },
+    { name: 'Chase', is: 30.43, top: 81.66, you: false },
+    { name: '10bestmortgage.com', is: 26.58, top: 65.90, you: false },
+    { name: 'UPM (You)', is: 25.24, top: 92.27, you: true },
+    { name: 'Wells Fargo', is: 24.64, top: 83.45, you: false },
+    { name: 'wsfsbank.com', is: 20.33, top: 95.87, you: false },
+    { name: 'SoFi', is: 11.05, top: 59.93, you: false },
+    { name: 'Veterans United', is: 9, top: 78.01, you: false, approx: true }
+  ];
+  AUCTION_ROWS.sort(function (a,b) { return b.is - a.is; });
+
+  function drawAuctionBar(svgId, tipSuffix, metricKey, maxV, gridStep) {
+    var svg = document.getElementById(svgId);
+    var W = 900, H = 240, padL = 20, padR = 20, padT = 10, padB = 30;
+    var plotW = W - padL - padR;
+    var rows = AUCTION_ROWS;
+    var n = rows.length;
+    var bw = (plotW / n) * 0.55;
+    var gap = (plotW / n) * 0.45;
+    var plotH = H - padT - padB;
+    var holder = svg.closest('.chart-holder');
+    var tip = holder.querySelector('.tooltip');
+    var gridVals = [];
+    for (var g = 0; g < maxV; g += gridStep) gridVals.push(g);
+    gridVals.forEach(function (v) {
+      var y = padT + plotH - (plotH*v)/maxV;
+      svg.appendChild(el('line', { x1: padL, x2: W-padR, y1: y, y2: y, class: 'gridline' }));
+      var t = el('text', { x: 4, y: y+3, class: 'axis-label' }); t.textContent = v + '%'; svg.appendChild(t);
+    });
+    rows.forEach(function (r, i) {
+      var v = r[metricKey];
+      var x = padL + i * (plotW/n) + gap/2;
+      var barH = (plotH * v) / maxV;
+      var y = padT + plotH - barH;
+      var color = r.you ? css('--good') : css('--accent');
+      var rect = el('rect', { x: x, y: y, width: bw, height: Math.max(barH,2), rx: 4, fill: color, class: 'hover-target' });
+      rect.addEventListener('mouseenter', function () {
+        var rect2 = holder.getBoundingClientRect();
+        var label = (r.approx && metricKey === 'is') ? '&lt;10%' : v.toFixed(2) + '%';
+        showTip(tip, holder, (x+bw/2)/W*rect2.width, y/H*rect2.height, r.name + ' &middot; <b>' + label + '</b> ' + tipSuffix);
+      });
+      rect.addEventListener('mouseleave', function () { hideTip(tip); });
+      svg.appendChild(rect);
+      var lbl = el('text', { x: x+bw/2, y: H-16, class: 'axis-label', 'text-anchor': 'middle' });
+      lbl.textContent = r.name.length > 14 ? r.name.slice(0,13)+'…' : r.name;
+      svg.appendChild(lbl);
+      var val = el('text', { x: x+bw/2, y: y-6, class: 'bar-value', 'text-anchor': 'middle' });
+      val.textContent = (r.approx && metricKey === 'is') ? '<10%' : v.toFixed(0)+'%';
+      svg.appendChild(val);
+    });
+  }
+
+  drawAuctionBar('auction-chart', 'IS', 'is', 45, 10);
+  drawAuctionBar('topofpage-chart', 'top of page', 'top', 100, 20);
+
+  // ---------------- OPPORTUNITY TRACKING TABLES ----------------
+  (function () {
+    var googleRows = [
+      ['first home buyer loans', 44, 4, 426.60],
+      ['pre approved mortgage', 3, 1, 277.31],
+      ['first time home buyer home loan', 4, 0, null],
+      ['mortgage pre approval estimate', 4, 0, null],
+      ['how to get pre approved for a mortgage', 3, 0, null],
+      ['first time home buyer loan', 3, 0, null]
+    ];
+    var gTbody = document.getElementById('opp-google-table');
+    googleRows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      if (r[2] === 0) tr.className = 'zero';
+      var cpo = r[3] ? '$' + r[3].toFixed(2) : 'n/a';
+      tr.innerHTML = '<td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + r[2] + '</td><td class="num">' + cpo + '</td>';
+      gTbody.appendChild(tr);
+    });
+
+    var fbRows = [
+      ['Purchase General, V1', 65, 4, 379.23],
+      ['Purchase General, V2', 51, 2, 770.71]
+    ];
+    var fTbody = document.getElementById('opp-facebook-table');
+    var fbBest = Math.min.apply(null, fbRows.map(function(r){return r[3];}));
+    fbRows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      var isBest = r[3] === fbBest;
+      var cpo = '$' + r[3].toFixed(2);
+      if (isBest) cpo = '<span class="pill-best">' + cpo + '</span>';
+      tr.innerHTML = '<td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + r[2] + '</td><td class="num">' + cpo + '</td>';
+      fTbody.appendChild(tr);
+    });
+  })();
+})();
+</script>

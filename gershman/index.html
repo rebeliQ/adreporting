@@ -1,0 +1,130 @@
+<title>Gershman Mortgage — Reports</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap">
+
+<style>
+#pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #09175C;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+#pw-gate.hidden { display: none; }
+.pw-box {
+  background: #0F1E4A; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 360px;
+  display: flex; flex-direction: column; gap: 20px; text-align: center;
+}
+.pw-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7B9BDF; }
+.pw-title { font-size: 22px; font-weight: 800; color: #D4DFFA; letter-spacing: -.01em; }
+.pw-sub { font-size: 13px; color: #7B93CC; }
+.pw-input {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
+  color: #D4DFFA; font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; text-align: center; letter-spacing: .05em;
+}
+.pw-input:focus { border-color: #5B78D8; }
+.pw-btn {
+  width: 100%; padding: 12px; border-radius: 8px; border: none;
+  background: #294F9D; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s;
+}
+.pw-btn:hover { background: #3560B8; }
+.pw-error { font-size: 12px; color: #F0594F; min-height: 16px; }
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div>
+      <img src="/assets/logo-white.svg" alt="rebel iQ" style="height:32px;margin-bottom:18px;opacity:.9">
+      <div class="pw-eyebrow">Gershman Mortgage</div>
+      <div class="pw-title">Campaign Reports</div>
+    </div>
+    <div class="pw-sub">Enter your access code to view reports.</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Access code" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">View Reports</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'riq_gershman_ne_auth';
+  const PASS = 'gershman2026';
+  function unlock(){ document.getElementById('pw-gate').classList.add('hidden'); }
+  try { if(localStorage.getItem(KEY)==='1') unlock(); } catch(e){}
+  document.getElementById('pw-btn').addEventListener('click', function(){
+    if(document.getElementById('pw-input').value === PASS){
+      try { localStorage.setItem(KEY,'1'); } catch(e){}
+      unlock();
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code — try again.';
+    }
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('pw-btn').click();
+  });
+})();
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #E8EEF8; --surface: #fff; --border: #D2DCF0;
+  --t1: #0B1538; --t2: #3D5080; --t3: #7D90B8;
+  --accent: #09175C; --accent-l: #294F9D;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #080F24; --surface: #0F1A36; --border: #1E2D55;
+    --t1: #D4DFFA; --t2: #7B93CC; --t3: #3A5082;
+    --accent: #5B78D8; --accent-l: #7B9BDF; color-scheme: dark;
+  }
+}
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg); color: var(--t1);
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 40px 20px;
+}
+.wrap { max-width: 520px; width: 100%; }
+.logo-wrap { margin-bottom: 28px; }
+.eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-l); margin-bottom: 6px; }
+h1 { font-size: 26px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 4px; }
+.sub { font-size: 13.5px; color: var(--t2); margin-bottom: 32px; }
+.campaigns { display: flex; flex-direction: column; gap: 10px; }
+.campaign-link {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px;
+  text-decoration: none; color: inherit; transition: border-color .15s;
+}
+.campaign-link:hover { border-color: var(--accent-l); }
+.camp-left {}
+.camp-channel { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--t3); margin-bottom: 4px; }
+.camp-title { font-size: 15px; font-weight: 700; color: var(--t1); }
+.camp-meta { font-size: 11.5px; color: var(--t3); margin-top: 2px; }
+.camp-arrow { color: var(--t3); font-size: 18px; }
+</style>
+
+<div class="wrap">
+  <div class="logo-wrap">
+    <picture>
+      <source srcset="/assets/logo-white.svg" media="(prefers-color-scheme:dark)">
+      <img src="/assets/logo-color.svg" alt="rebel iQ" style="height:22px;display:block">
+    </picture>
+  </div>
+  <div class="eyebrow">Gershman Mortgage</div>
+  <h1>Campaign Reports</h1>
+  <p class="sub">Select a campaign to view performance.</p>
+  <div class="campaigns">
+    <a class="campaign-link" href="/gershman/nebraska-google-ads/">
+      <div class="camp-left">
+        <div class="camp-channel">Google Ads</div>
+        <div class="camp-title">Nebraska</div>
+        <div class="camp-meta">Aug 1 – Sep 29, 2026</div>
+      </div>
+      <span class="camp-arrow">›</span>
+    </a>
+  </div>
+</div>
