@@ -1,0 +1,329 @@
+<title>Gershman Tennessee — Ads</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+#pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #09175C;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+#pw-gate.hidden { display: none; }
+.pw-box {
+  background: #0F1E4A; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 40px 36px; width: 100%; max-width: 360px;
+  display: flex; flex-direction: column; gap: 20px; text-align: center;
+}
+.pw-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7B9BDF; }
+.pw-title { font-size: 22px; font-weight: 800; color: #D4DFFA; letter-spacing: -.01em; }
+.pw-sub { font-size: 13px; color: #7B93CC; }
+.pw-input {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
+  color: #D4DFFA; font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; text-align: center; letter-spacing: .05em;
+}
+.pw-input:focus { border-color: #5B78D8; }
+.pw-btn {
+  width: 100%; padding: 12px; border-radius: 8px; border: none;
+  background: #294F9D; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s;
+}
+.pw-btn:hover { background: #3560B8; }
+.pw-error { font-size: 12px; color: #F0594F; min-height: 16px; }
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div>
+      <img src="/assets/logo-white.svg" alt="rebel iQ" style="height:32px;margin-bottom:18px;opacity:.9">
+      <div class="pw-eyebrow">Gershman Mortgage</div>
+      <div class="pw-title">Tennessee Ads Report</div>
+    </div>
+    <div class="pw-sub">Enter your access code to view this report.</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Access code" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">View Report</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'riq_gershman_ne_auth';
+  const PASS = 'gershman2026';
+  function unlock(){ document.getElementById('pw-gate').classList.add('hidden'); }
+  try { if(localStorage.getItem(KEY)==='1') unlock(); } catch(e){}
+  document.getElementById('pw-btn').addEventListener('click', function(){
+    if(document.getElementById('pw-input').value === PASS){
+      try { localStorage.setItem(KEY,'1'); } catch(e){}
+      unlock();
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code — try again.';
+    }
+  });
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('pw-btn').click();
+  });
+})();
+</script>
+
+<style>
+/* ─── Tokens ─── */
+:root {
+  --bg:       #E8EEF8;
+  --surface:  #FFFFFF;
+  --s2:       #F2F5FB;
+  --border:   #D2DCF0;
+  --t1:       #0B1538;
+  --t2:       #3D5080;
+  --t3:       #7D90B8;
+  --accent:   #09175C;
+  --accent-l: #294F9D;
+  --pos:      #0A7A55;
+  --neg:      #C0392B;
+  --warn:     #B8690A;
+  --pos-bg:   #E4F0EB;
+  --neg-bg:   #FDEAEA;
+  --shadow:   0 1px 4px rgba(11,21,56,.07), 0 4px 12px rgba(11,21,56,.05);
+  --radius:   10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #080F24;
+    --surface: #0F1A36;
+    --s2:      #141F3A;
+    --border:  #1E2D55;
+    --t1:      #D4DFFA;
+    --t2:      #7B93CC;
+    --t3:      #3A5082;
+    --accent:  #5B78D8;
+    --accent-l:#7B9BDF;
+    --pos:     #12C490;
+    --neg:     #FF4D3F;
+    --warn:    #FFB020;
+    --pos-bg:  #0A2218;
+    --neg-bg:  #250A0A;
+    --shadow:  0 1px 4px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #080F24;
+  --surface: #0F1A36;
+  --s2:      #141F3A;
+  --border:  #1E2D55;
+  --t1:      #D4DFFA;
+  --t2:      #7B93CC;
+  --t3:      #3A5082;
+  --accent:  #5B78D8;
+  --accent-l:#7B9BDF;
+  --pos:     #12C490;
+  --neg:     #FF4D3F;
+  --warn:    #FFB020;
+  --pos-bg:  #0A2218;
+  --neg-bg:  #250A0A;
+  --shadow:  0 1px 4px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  padding: 28px 24px 40px;
+  min-height: 100vh;
+}
+
+.dash { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-bottom: 18px; border-bottom: 1px solid var(--border);
+}
+.eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); margin-bottom: 4px; }
+.dash-title { font-size: 24px; font-weight: 700; color: var(--t1); line-height: 1; }
+.dash-title .channel { color: var(--accent-l); }
+.header-meta { text-align: right; }
+.header-date { font-size: 13px; font-weight: 600; color: var(--t2); }
+.header-sub { font-size: 11px; color: var(--t3); margin-top: 2px; }
+
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.kpi {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px 16px; box-shadow: var(--shadow);
+}
+.kpi-label { font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+.kpi-val { font-family: 'JetBrains Mono', monospace; font-size: 30px; font-weight: 500; color: var(--t1); line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi-delta { display: flex; align-items: center; gap: 5px; margin-top: 7px; font-size: 11.5px; color: var(--t2); }
+.badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+.badge-pos { background: var(--pos-bg); color: var(--pos); }
+.badge-neg { background: var(--neg-bg); color: var(--neg); }
+.badge-flat { background: var(--s2); color: var(--t2); }
+.badge-new { background: rgba(41,79,157,.15); color: var(--accent-l); }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
+}
+.card-title { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+.card-sub { font-size: 11px; color: var(--t3); margin-bottom: 14px; }
+
+/* Early-launch notice */
+.launch-notice {
+  background: var(--s2); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-l);
+  border-radius: var(--radius); padding: 20px 22px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.notice-icon { font-size: 20px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+.notice-body {}
+.notice-title { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 6px; }
+.notice-text { font-size: 12.5px; color: var(--t2); line-height: 1.6; }
+.notice-text strong { color: var(--t1); font-weight: 600; }
+
+/* Lead table */
+.lead-table { width: 100%; border-collapse: collapse; }
+.lead-table th { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); padding: 0 0 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.lead-table th.r { text-align: right; }
+.lead-table td { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--t1); }
+.lead-table tr:last-child td { border-bottom: none; }
+.lead-table td.r { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-variant-numeric: tabular-nums; }
+.pending { color: var(--t3); font-style: italic; }
+
+/* Two-col layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+/* Placeholder chart area */
+.chart-placeholder {
+  height: 160px; border: 1px dashed var(--border); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--t3); font-size: 11.5px; font-style: italic;
+  background: var(--s2);
+}
+</style>
+
+<div class="dash">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <picture style="display:block;margin-bottom:10px">
+        <source srcset="/assets/logo-white.svg" media="(prefers-color-scheme:dark)">
+        <img src="/assets/logo-color.svg" alt="rebel iQ" style="height:22px;display:block">
+      </picture>
+      <div class="eyebrow">Gershman Mortgage · Google Ads</div>
+      <div class="dash-title">Tennessee <span class="channel">Campaign</span></div>
+    </div>
+    <div class="header-meta">
+      <div class="header-date" id="hdr-date">Campaign launched Oct 2026</div>
+      <div class="header-sub">Google Search · TN statewide</div>
+    </div>
+  </div>
+
+  <!-- Early-launch notice -->
+  <div class="launch-notice">
+    <div class="notice-icon">🚀</div>
+    <div class="notice-body">
+      <div class="notice-title">Campaign just launched — early data</div>
+      <div class="notice-text">
+        The Tennessee campaign is live with <strong>2 leads captured</strong> so far.
+        Charts and trend analysis will populate once there's enough volume — typically 2–3 weeks in.
+        This page updates automatically as we pull new data.
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI tiles (live as of launch) -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Total Leads</div>
+      <div class="kpi-val">2</div>
+      <div class="kpi-delta"><span class="badge badge-new">Campaign live</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Cost Per Lead</div>
+      <div class="kpi-val" id="kpi-cpl">—</div>
+      <div class="kpi-delta" id="kpi-cpl-sub">Pending spend data</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Credit-Qual ≥620</div>
+      <div class="kpi-val" id="kpi-cq">—</div>
+      <div class="kpi-delta" id="kpi-cq-sub">Pending lead data</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Urgent Timeline</div>
+      <div class="kpi-val" id="kpi-tl">—</div>
+      <div class="kpi-delta" id="kpi-tl-sub">Pending lead data</div>
+    </div>
+  </div>
+
+  <!-- Lead detail + geo -->
+  <div class="two-col">
+
+    <div class="card">
+      <div class="card-title">Lead Detail</div>
+      <div class="card-sub">Both leads captured at launch</div>
+      <table class="lead-table">
+        <thead>
+          <tr>
+            <th>Lead</th>
+            <th>ZIP</th>
+            <th class="r">Credit Est.</th>
+            <th class="r">Timeline</th>
+          </tr>
+        </thead>
+        <tbody id="lead-body">
+          <tr>
+            <td>#1</td>
+            <td class="pending">—</td>
+            <td class="r pending">—</td>
+            <td class="r pending">—</td>
+          </tr>
+          <tr>
+            <td>#2</td>
+            <td class="pending">—</td>
+            <td class="r pending">—</td>
+            <td class="r pending">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Campaign Setup</div>
+      <div class="card-sub">Configuration as launched</div>
+      <table class="lead-table">
+        <tbody>
+          <tr><td style="color:var(--t3);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;padding-top:0">Geography</td><td class="r">Tennessee statewide</td></tr>
+          <tr><td style="color:var(--t3);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em">Bid strategy</td><td class="r pending" id="cfg-bid">—</td></tr>
+          <tr><td style="color:var(--t3);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em">Daily budget</td><td class="r pending" id="cfg-budget">—</td></tr>
+          <tr><td style="color:var(--t3);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em">Network</td><td class="r" id="cfg-network">Google Search</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Chart placeholders -->
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title">Cost Per Lead Trend</div>
+      <div class="card-sub">Will populate after 2–3 weeks</div>
+      <div class="chart-placeholder">Not enough data yet</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lead Credit Quality</div>
+      <div class="card-sub">Will populate after 10+ leads</div>
+      <div class="chart-placeholder">Not enough data yet</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lead Geography</div>
+      <div class="card-sub">ZIP / county breakdown</div>
+      <div class="chart-placeholder">Not enough data yet</div>
+    </div>
+  </div>
+
+</div>
